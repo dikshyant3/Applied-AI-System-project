@@ -1,0 +1,16 @@
+{
+  "preferences": {
+    "favorite_genre": "rock",
+    "target_energy": 1.4,
+    "target_popularity": {"value": 70, "priority": "hard"},
+    "favourite_decade": 1990
+  },
+  "strategy": "popularity-first",
+  "playlist": {"playlist_size": 0},
+  "hard_constraints": [
+    {"type": "genre", "values": ["pop"]},
+    {"type": "tempo_bpm", "min": 120},
+    {"type": "speechiness_range", "min": 0.8, "max": 0.2},
+    {"type": "mood", "values": ["happy"], "source": "inferred"}
+  ]
+}

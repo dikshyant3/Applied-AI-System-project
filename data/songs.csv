@@ -1,0 +1,251 @@
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,detailed_mood,instrumentalness,speechiness,duration_seconds
+1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,82,2020,euphoric,0.00,0.05,204
+2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,58,2020,cozy,0.18,0.04,165
+3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,71,2010,defiant,0.00,0.06,227
+4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,44,2020,serene,0.22,0.04,148
+5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,86,2020,triumphant,0.00,0.08,233
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,39,2010,meditative,0.91,0.03,441
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,52,2010,intimate,0.12,0.05,375
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,64,2010,nocturnal,0.06,0.04,303
+9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,61,2020,focused,0.35,0.03,135
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,69,2020,radiant,0.00,0.05,247
+11,Dust & Denim,Cedar Vale,country,nostalgic,0.55,96,0.68,0.63,0.72,48,2000,homesick,0.03,0.04,189
+12,Velvet Waltz,Mira Sol,classical,romantic,0.24,68,0.67,0.31,0.94,41,2010,tender,0.89,0.04,361
+13,Concrete Bloom,Northline,hip-hop,confident,0.81,96,0.68,0.87,0.12,78,2020,assertive,0.02,0.14,229
+14,Island Signal,Coastline Dub,reggae,carefree,0.64,102,0.82,0.78,0.35,57,2010,carefree,0.00,0.05,205
+15,Glass Cathedral,Ashes Awake,metal,cathartic,0.96,168,0.31,0.49,0.03,59,2020,rebellious,0.04,0.07,243
+16,Lunar Postcard,Aster Vale,folk,wistful,0.38,84,0.46,0.45,0.91,43,2010,reflective,0.32,0.04,175
+17,Neon Mirage,Sora Static,k-pop,playful,0.88,126,0.91,0.91,0.08,88,2020,exuberant,0.00,0.12,197
+18,Blue Hour Train,Quiet Meridian,blues,melancholic,0.33,74,0.29,0.40,0.77,46,2000,sorrowful,0.05,0.04,227
+19,Folded Telegram,Max Pulse,pop,intense,0.73,106,0.78,0.80,0.13,76,2010,fierce,0.00,0.07,191
+20,Morning Letters,Polar Society,pop,carefree,0.71,121,0.74,0.77,0.06,62,2010,breezy,0.02,0.04,192
+21,Electric Engines,Lattice Circuit,pop,energetic,0.80,108,0.56,0.81,0.12,75,2010,driving,0.04,0.04,172
+22,Lantern Harbor,Harbor Society,pop,romantic,0.90,111,0.89,0.90,0.14,89,2010,tender,0.04,0.07,220
+23,Gentle Horizon,Harbor Society,pop,happy,0.79,133,0.54,0.64,0.23,55,2010,sunny,0.03,0.04,201
+24,Silver Orchard,Tavi Okafor,pop,confident,0.79,129,0.57,0.74,0.05,58,2010,swaggering,0.00,0.06,196
+25,Morning Static,Ezra Reyes,pop,playful,0.55,103,0.71,0.66,0.25,90,2020,whimsical,0.00,0.10,176
+26,Quiet Daydream,Ezra Reyes,pop,intense,0.63,122,0.54,0.72,0.13,78,2020,defiant,0.03,0.06,171
+27,Velvet Engines,Tavi Okafor,pop,carefree,0.59,127,0.68,0.82,0.16,67,2020,breezy,0.02,0.07,193
+28,Restless Daydream,Max Pulse,pop,energetic,0.88,113,0.66,0.64,0.31,59,2010,electrified,0.00,0.05,203
+29,Glass Mirrors,Harbor Society,pop,romantic,0.93,133,0.56,0.85,0.12,90,2000,passionate,0.04,0.05,230
+30,Static Lanterns,Sunniva Lindqvist,lofi,dreamy,0.38,69,0.62,0.68,0.61,48,2020,floating,0.24,0.05,191
+31,Static Signals,Freya Brandt,lofi,melancholic,0.26,65,0.52,0.52,0.86,49,2010,sorrowful,0.46,0.03,147
+32,Slow Embers,Marisol Moreau,lofi,focused,0.43,87,0.48,0.57,0.85,69,2020,focused,0.31,0.05,131
+33,Harbor Driftwood,Marisol Moreau,lofi,relaxed,0.22,89,0.64,0.69,0.87,49,2010,laid-back,0.37,0.02,160
+34,Crimson Avenues,Rowan Larkspur,lofi,chill,0.49,87,0.65,0.68,0.68,53,2010,cozy,0.43,0.04,112
+35,Crimson Horizon,Marble Parade,lofi,wistful,0.31,68,0.53,0.66,0.89,45,2010,yearning,0.52,0.03,193
+36,Cobalt Skyline,Marisol Moreau,lofi,dreamy,0.34,66,0.39,0.61,0.73,70,2020,floating,0.52,0.05,168
+37,Paper Lullaby,Marble Parade,lofi,melancholic,0.37,89,0.41,0.60,0.79,34,2010,lonely,0.47,0.05,127
+38,Amber Lullaby,Freya Brandt,lofi,focused,0.40,77,0.50,0.53,0.72,64,2010,focused,0.10,0.03,198
+39,Paper Tides,Rowan Larkspur,lofi,relaxed,0.48,78,0.63,0.65,0.78,63,2020,mellow,0.54,0.05,192
+40,Glass Tides,Teodor Reyes,rock,moody,0.71,139,0.36,0.57,0.06,42,1980,brooding,0.09,0.03,242
+41,Crimson Prism,Silver Static,rock,confident,0.76,163,0.47,0.51,0.19,76,2010,assertive,0.05,0.03,250
+42,Crimson Corridor,Voltline,rock,nostalgic,0.61,131,0.43,0.56,0.27,74,2020,homesick,0.03,0.04,300
+43,Window Harbor,Marisol Castell,rock,intense,0.83,135,0.61,0.61,0.21,51,1980,defiant,0.10,0.07,229
+44,Northern Skyline,Teodor Reyes,rock,energetic,0.79,110,0.60,0.57,0.16,75,1990,electrified,0.10,0.03,276
+45,Window Monsoon,Marisol Castell,rock,cathartic,0.64,145,0.71,0.62,0.27,70,2020,rebellious,0.02,0.07,287
+46,Static Embers,Meridian Union,rock,moody,0.73,116,0.46,0.64,0.16,64,2000,nocturnal,0.01,0.05,273
+47,Burning Embers,Silver Static,rock,confident,0.74,142,0.41,0.42,0.12,75,2020,swaggering,0.06,0.04,274
+48,Velvet Embers,Teodor Reyes,rock,nostalgic,0.81,156,0.35,0.61,0.20,68,2000,homesick,0.04,0.04,194
+49,Distant Horizon,Meridian Union,rock,intense,0.80,163,0.63,0.69,0.23,50,2010,defiant,0.01,0.06,290
+50,Marble Fireflies,Voltline,rock,energetic,0.60,110,0.67,0.58,0.22,42,1990,driving,0.07,0.07,199
+51,Marble Mirrors,Meridian Union,rock,cathartic,0.78,114,0.50,0.69,0.24,57,2020,explosive,0.02,0.06,230
+52,Cobalt Hourglass,Fable Arcade,ambient,chill,0.24,75,0.40,0.34,0.90,46,2020,cozy,0.72,0.05,436
+53,Distant Echoes,Hollow Arcade,ambient,melancholic,0.10,83,0.38,0.40,0.77,48,2010,sorrowful,0.82,0.02,244
+54,Second Static,Marisol Okafor,ambient,wistful,0.30,84,0.41,0.41,0.78,21,2020,reflective,0.90,0.04,376
+55,Canvas Horizon,Opal Orchestra,ambient,dreamy,0.38,57,0.68,0.37,0.74,28,2010,floating,0.88,0.02,398
+56,Harbor Static,Fable Arcade,ambient,focused,0.10,80,0.38,0.25,0.86,36,2010,determined,0.92,0.03,269
+57,Velvet Mirrors,Marisol Okafor,ambient,chill,0.20,77,0.42,0.28,0.63,20,2000,meditative,0.97,0.02,403
+58,Restless Postcards,Orbit Bloom,ambient,melancholic,0.22,68,0.37,0.41,0.72,31,2010,sorrowful,0.89,0.03,286
+59,Canvas Mirrors,Opal Orchestra,ambient,wistful,0.28,79,0.63,0.50,0.73,50,2010,reflective,0.78,0.04,475
+60,Second Prism,Marisol Okafor,ambient,dreamy,0.11,73,0.53,0.21,0.78,51,2020,ethereal,0.86,0.03,410
+61,Orbit Engines,Yara Sorensen,ambient,focused,0.18,90,0.45,0.46,0.87,52,2020,determined,0.79,0.04,295
+62,Canvas Embers,Orbit Bloom,ambient,chill,0.24,84,0.60,0.27,0.95,54,1990,serene,0.87,0.04,425
+63,Window Daydream,Hollow Arcade,ambient,melancholic,0.28,69,0.57,0.35,0.84,47,1990,lonely,0.84,0.03,400
+64,Neon Fireflies,Velvet Lanterns,jazz,relaxed,0.39,82,0.79,0.48,0.71,32,2000,intimate,0.27,0.04,231
+65,Copper Gardens,Rustle Union,jazz,moody,0.60,141,0.60,0.69,0.70,25,2010,brooding,0.43,0.05,233
+66,Velvet Monsoon,Rustle Union,jazz,playful,0.41,73,0.48,0.59,0.70,34,2010,whimsical,0.84,0.07,237
+67,Velvet Tides,Slow Stereo,jazz,chill,0.32,94,0.51,0.48,0.71,47,2000,cozy,0.42,0.03,417
+68,Hollow Lanterns,Rowan Halloran,jazz,romantic,0.42,89,0.44,0.41,0.91,57,2020,tender,0.27,0.04,260
+69,Harbor Horizon,Rowan Halloran,jazz,nostalgic,0.45,147,0.80,0.58,0.81,65,1990,bittersweet,0.60,0.04,311
+70,Quiet Prism,Velvet Lanterns,jazz,relaxed,0.54,126,0.57,0.58,0.62,43,2010,intimate,0.69,0.05,408
+71,Silver Parade,Velvet Lanterns,jazz,moody,0.60,156,0.40,0.68,0.64,37,2000,nocturnal,0.72,0.04,252
+72,Velvet Daydream,Saffron Tides,jazz,playful,0.55,105,0.67,0.58,0.72,60,1980,exuberant,0.75,0.03,224
+73,Tidal Driftwood,Saffron Tides,jazz,chill,0.58,159,0.75,0.46,0.65,43,2000,cozy,0.76,0.07,250
+74,Orbit Embers,Velvet Lanterns,jazz,romantic,0.46,102,0.71,0.66,0.74,35,1980,passionate,0.28,0.05,218
+75,Glass Lanterns,Rustle Union,jazz,nostalgic,0.59,125,0.49,0.66,0.72,41,1990,bittersweet,0.34,0.06,238
+76,Morning Currents,Cinder Season,synthwave,dreamy,0.86,95,0.54,0.73,0.19,71,2020,ethereal,0.81,0.04,254
+77,Harbor Letters,Cinder Season,synthwave,moody,0.66,98,0.37,0.81,0.15,67,2020,nocturnal,0.60,0.04,314
+78,Silver Lullaby,Opal Motel,synthwave,energetic,0.69,99,0.69,0.82,0.21,35,2020,electrified,0.64,0.03,289
+79,Copper Postcards,Cinder Season,synthwave,nostalgic,0.76,121,0.53,0.79,0.10,40,2010,bittersweet,0.81,0.05,312
+80,Saffron Currents,Saffron Avenue,synthwave,confident,0.66,99,0.61,0.71,0.25,72,2020,assertive,0.41,0.02,287
+81,Hollow Compass,Opal Motel,synthwave,dreamy,0.77,107,0.53,0.69,0.12,44,2010,ethereal,0.52,0.06,260
+82,Hollow Currents,Opal Motel,synthwave,moody,0.88,110,0.45,0.64,0.12,54,2010,nocturnal,0.66,0.03,268
+83,Slow Telegram,Cinder Season,synthwave,energetic,0.68,104,0.50,0.69,0.21,48,2010,driving,0.64,0.05,255
+84,Morning Lanterns,Granite Rooms,synthwave,nostalgic,0.65,93,0.45,0.80,0.05,52,2020,bittersweet,0.68,0.06,270
+85,Northern Orchard,Neon Echo,synthwave,confident,0.80,90,0.44,0.85,0.03,68,2010,assertive,0.62,0.03,237
+86,Velvet Driftwood,Saffron Avenue,synthwave,dreamy,0.78,111,0.35,0.77,0.11,72,2010,floating,0.84,0.03,284
+87,Silver Hourglass,Neon Echo,synthwave,moody,0.82,118,0.46,0.67,0.23,58,2020,brooding,0.49,0.05,307
+88,Gentle Gardens,Ines Brandt,indie pop,wistful,0.63,126,0.73,0.57,0.24,44,2000,reflective,0.06,0.04,218
+89,Restless Driftwood,Ember Choir,indie pop,carefree,0.59,113,0.86,0.84,0.27,77,2010,breezy,0.05,0.05,181
+90,Wandering Static,Tundra Parade,indie pop,romantic,0.84,125,0.69,0.73,0.22,62,2000,tender,0.06,0.07,210
+91,Borrowed Postcards,Ember Foxes,indie pop,playful,0.83,109,0.51,0.84,0.19,59,2020,whimsical,0.06,0.06,232
+92,Orbit Orchard,Granite Orchestra,indie pop,happy,0.84,102,0.75,0.69,0.31,65,2010,euphoric,0.08,0.05,243
+93,Restless Lanterns,Granite Orchestra,indie pop,dreamy,0.67,99,0.52,0.82,0.40,79,2010,floating,0.00,0.06,189
+94,Restless Prism,Tundra Parade,indie pop,wistful,0.71,109,0.85,0.67,0.23,65,2000,reflective,0.06,0.05,180
+95,Borrowed Corridor,Ember Foxes,indie pop,carefree,0.64,119,0.87,0.56,0.36,51,2000,breezy,0.06,0.04,235
+96,Restless Orchard,Dario Okafor,indie pop,romantic,0.80,116,0.85,0.70,0.28,49,2000,passionate,0.08,0.04,225
+97,Second Comets,Tundra Parade,indie pop,playful,0.73,110,0.65,0.78,0.25,42,2000,exuberant,0.03,0.06,205
+98,Harbor Orchard,Ines Brandt,indie pop,happy,0.82,106,0.74,0.78,0.37,77,2020,euphoric,0.01,0.04,232
+99,Gentle Letters,Tundra Parade,indie pop,dreamy,0.45,110,0.67,0.68,0.29,72,2020,ethereal,0.06,0.06,226
+100,Velvet Letters,Prism Garden,country,nostalgic,0.46,126,0.47,0.66,0.72,40,2010,bittersweet,0.01,0.04,182
+101,Orbit Cassette,Zephyr Lanterns,country,melancholic,0.47,81,0.77,0.60,0.48,37,2000,sorrowful,0.03,0.06,229
+102,Marble Echoes,Granite Engines,country,happy,0.44,93,0.72,0.57,0.83,62,2020,euphoric,0.01,0.06,203
+103,Borrowed Telegram,Liesel Okafor,country,carefree,0.60,121,0.48,0.67,0.44,36,2010,carefree,0.05,0.04,220
+104,Distant Mirrors,Cedar Vale,country,romantic,0.64,107,0.76,0.51,0.60,39,2010,passionate,0.05,0.03,190
+105,Window Driftwood,Zephyr Lanterns,country,nostalgic,0.69,93,0.54,0.70,0.70,70,1990,homesick,0.02,0.04,237
+106,Northern Hourglass,Granite Engines,country,melancholic,0.51,113,0.58,0.70,0.80,52,2000,lonely,0.01,0.05,211
+107,Second Driftwood,Prism Garden,country,happy,0.66,127,0.61,0.53,0.74,64,2010,radiant,0.08,0.06,219
+108,Copper Cassette,Granite Engines,country,carefree,0.60,85,0.80,0.74,0.45,47,2000,carefree,0.04,0.05,199
+109,Canvas Cassette,Cedar Vale,country,romantic,0.74,117,0.46,0.54,0.84,44,2020,passionate,0.01,0.05,184
+110,Borrowed Rooftops,Liesel Okafor,country,nostalgic,0.72,101,0.76,0.53,0.52,59,2010,bittersweet,0.04,0.05,170
+111,Faded Hourglass,Granite Engines,country,melancholic,0.53,85,0.53,0.72,0.64,63,2020,sorrowful,0.06,0.04,244
+112,Amber Echoes,Harbor Circuit,classical,romantic,0.37,116,0.38,0.44,0.87,26,1990,tender,0.90,0.05,550
+113,Tidal Tides,Willow Orchestra,classical,dreamy,0.30,83,0.66,0.18,0.89,56,2000,floating,0.94,0.02,252
+114,Crimson Orchard,Static Avenue,classical,melancholic,0.37,119,0.49,0.28,0.89,23,2010,sorrowful,0.85,0.04,405
+115,Slow Letters,Static Avenue,classical,focused,0.38,59,0.66,0.19,0.92,41,1980,focused,0.90,0.05,514
+116,Burning Monsoon,Mira Sol,classical,chill,0.12,99,0.50,0.36,0.92,45,1980,meditative,0.98,0.05,428
+117,Canvas Postcards,Sunniva Reyes,classical,wistful,0.12,94,0.27,0.24,0.86,34,2020,yearning,0.91,0.02,505
+118,Second Waltz,Rustle Lanterns,classical,romantic,0.20,90,0.32,0.44,0.90,44,2020,tender,0.96,0.04,408
+119,Amber Driftwood,Static Avenue,classical,dreamy,0.24,104,0.64,0.30,0.86,40,1990,ethereal,0.97,0.02,288
+120,Orbit Comets,Sunniva Reyes,classical,melancholic,0.11,78,0.22,0.20,0.94,33,2010,lonely,0.92,0.04,490
+121,Northern Parade,Sunniva Reyes,classical,focused,0.32,97,0.74,0.41,0.86,44,1990,focused,0.86,0.04,496
+122,Northern Compass,Harbor Circuit,classical,chill,0.43,105,0.47,0.29,0.99,41,1980,serene,0.80,0.04,368
+123,Paper Embers,Sunniva Reyes,classical,wistful,0.20,80,0.40,0.45,0.87,51,2020,yearning,0.88,0.04,386
+124,Northern Lanterns,Silver Orchestra,hip-hop,playful,0.86,109,0.40,0.80,0.25,61,2020,exuberant,0.02,0.22,211
+125,Folded Tides,Zephyr Kites,hip-hop,moody,0.72,99,0.37,0.90,0.09,86,2000,nocturnal,0.06,0.35,171
+126,Wandering Monsoon,Joaquin Sorensen,hip-hop,energetic,0.56,100,0.60,0.89,0.20,92,2010,electrified,0.01,0.12,209
+127,Canvas Static,Meridian Arcade,hip-hop,intense,0.66,81,0.60,0.81,0.14,89,1990,triumphant,0.02,0.12,181
+128,Wandering Daydream,Meridian Arcade,hip-hop,nostalgic,0.65,81,0.80,0.71,0.14,51,2000,bittersweet,0.04,0.15,202
+129,Midnight Telegram,Silver Season,hip-hop,confident,0.70,92,0.76,0.83,0.07,55,2020,swaggering,0.07,0.23,220
+130,Marble Lanterns,Silver Season,hip-hop,playful,0.67,83,0.43,0.82,0.28,56,2010,exuberant,0.05,0.31,207
+131,Amber Letters,Silver Orchestra,hip-hop,moody,0.86,97,0.55,0.92,0.26,82,2020,nocturnal,0.02,0.31,200
+132,Wandering Comets,Zephyr Kites,hip-hop,energetic,0.72,99,0.50,0.82,0.07,77,2010,electrified,0.05,0.18,203
+133,Silver Corridor,Cobalt Satellites,hip-hop,intense,0.58,97,0.38,0.76,0.20,70,1990,triumphant,0.03,0.27,175
+134,Northern Fireflies,Silver Orchestra,hip-hop,nostalgic,0.68,100,0.67,0.66,0.29,86,2020,homesick,0.03,0.38,206
+135,Window Fireflies,Zephyr Kites,hip-hop,confident,0.61,88,0.76,0.72,0.18,52,2020,assertive,0.06,0.10,236
+136,Tidal Fireflies,Tundra Union,reggae,romantic,0.67,93,0.91,0.77,0.45,70,2010,passionate,0.02,0.10,268
+137,Cobalt Harbor,Lumen Tides,reggae,carefree,0.49,92,0.62,0.75,0.50,30,1980,carefree,0.09,0.05,279
+138,Quiet Corridor,Coastline Dub,reggae,relaxed,0.69,86,0.70,0.83,0.35,34,2020,laid-back,0.05,0.06,260
+139,Northern Prism,Sunniva Delacroix,reggae,chill,0.73,81,0.88,0.75,0.17,70,2000,cozy,0.07,0.07,246
+140,Wandering Telegram,Lumen Lanterns,reggae,happy,0.73,104,0.85,0.67,0.44,37,1980,radiant,0.08,0.06,261
+141,Amber Skyline,Tundra Union,reggae,romantic,0.50,90,0.77,0.69,0.22,47,1990,tender,0.12,0.12,270
+142,Neon Telegram,Odile Okafor,reggae,carefree,0.66,72,0.80,0.81,0.16,65,2020,breezy,0.12,0.07,258
+143,Wandering Skyline,Tundra Union,reggae,relaxed,0.60,104,0.83,0.79,0.31,66,1980,intimate,0.02,0.04,198
+144,Saffron Engines,Lumen Lanterns,reggae,chill,0.52,100,0.77,0.76,0.35,64,2010,hazy,0.13,0.11,253
+145,Midnight Letters,Lumen Tides,reggae,happy,0.62,94,0.74,0.83,0.23,50,2020,euphoric,0.05,0.06,238
+146,Quiet Skyline,Lumen Lanterns,reggae,romantic,0.59,97,0.62,0.67,0.28,40,2020,passionate,0.12,0.05,240
+147,Glass Compass,Ashes Awake,metal,cathartic,0.83,142,0.28,0.49,0.01,58,1980,rebellious,0.22,0.07,293
+148,Electric Embers,Granite Theory,metal,moody,0.95,155,0.22,0.51,0.02,46,2010,nocturnal,0.21,0.06,268
+149,Static Daydream,Tundra Satellites,metal,energetic,0.82,164,0.33,0.30,0.05,45,1980,electrified,0.03,0.12,224
+150,Second Harbor,Granite Theory,metal,intense,0.86,129,0.29,0.52,0.02,53,2010,defiant,0.17,0.09,250
+151,Tidal Telegram,Rowan Ferreira,metal,cathartic,0.85,160,0.40,0.55,0.02,70,2000,rebellious,0.11,0.11,305
+152,Restless Engines,Rowan Ferreira,metal,moody,0.92,142,0.43,0.56,0.01,48,1980,brooding,0.03,0.07,250
+153,Paper Comets,Ines Sorensen,metal,energetic,0.84,186,0.29,0.39,0.07,50,1980,electrified,0.04,0.06,372
+154,Harbor Compass,Granite Theory,metal,intense,0.99,134,0.37,0.31,0.05,41,2000,triumphant,0.04,0.09,367
+155,Silver Rooftops,Ines Sorensen,metal,cathartic,0.95,181,0.33,0.52,0.06,44,2010,rebellious,0.18,0.07,243
+156,Tidal Letters,Ines Sorensen,metal,moody,0.93,154,0.23,0.36,0.07,54,1980,brooding,0.18,0.10,344
+157,Wandering Lanterns,Granite Theory,metal,energetic,0.93,142,0.20,0.53,0.05,51,2020,driving,0.26,0.10,288
+158,Borrowed Static,Ines Reyes,folk,wistful,0.27,110,0.51,0.40,0.86,44,1990,yearning,0.11,0.03,200
+159,Marble Voltage,Kenji Takeda,folk,romantic,0.46,108,0.57,0.45,0.79,34,2020,tender,0.10,0.05,214
+160,Saffron Gardens,Noor Okafor,folk,melancholic,0.42,71,0.46,0.39,0.85,52,1990,sorrowful,0.30,0.05,244
+161,Orbit Skyline,Lattice Atlas,folk,relaxed,0.43,82,0.34,0.44,0.77,32,1990,mellow,0.25,0.05,181
+162,Electric Lanterns,Ines Reyes,folk,nostalgic,0.29,111,0.43,0.56,0.83,39,1990,bittersweet,0.35,0.04,190
+163,Tidal Harbor,Noor Okafor,folk,wistful,0.40,92,0.58,0.42,0.88,46,2000,reflective,0.12,0.04,185
+164,Marble Lullaby,Lattice Atlas,folk,romantic,0.45,105,0.63,0.53,0.84,35,2020,tender,0.02,0.04,208
+165,Neon Monsoon,Wren Orchestra,folk,melancholic,0.47,85,0.37,0.41,0.86,38,2010,lonely,0.25,0.04,261
+166,Silver Comets,Signal Foxes,folk,relaxed,0.21,108,0.62,0.43,0.78,37,2000,mellow,0.04,0.04,216
+167,Amber Cassette,Wren Orchestra,folk,nostalgic,0.26,109,0.60,0.51,0.91,39,2020,homesick,0.05,0.05,243
+168,Burning Daydream,Signal Foxes,folk,wistful,0.52,112,0.59,0.43,0.94,53,2000,reflective,0.25,0.06,276
+169,Velvet Avenues,Paper Circuit,k-pop,happy,0.70,126,0.68,0.83,0.17,90,2010,sunny,0.02,0.08,195
+170,Faded Telegram,Joaquin Ferreira,k-pop,confident,0.84,105,0.89,0.83,0.15,69,2010,assertive,0.01,0.09,187
+171,Static Postcards,Silver Engines,k-pop,romantic,0.84,112,0.83,0.86,0.11,81,2010,tender,0.01,0.07,197
+172,Morning Rooftops,Noor Mbeki,k-pop,playful,0.75,109,0.67,0.77,0.07,92,2020,exuberant,0.01,0.10,201
+173,Wandering Corridor,Vesper Canyon,k-pop,energetic,0.81,104,0.66,0.74,0.14,69,2020,driving,0.01,0.15,207
+174,Amber Postcards,Vesper Canyon,k-pop,happy,0.86,116,0.63,0.70,0.08,92,2010,sunny,0.02,0.14,214
+175,Glass Voltage,Silver Engines,k-pop,confident,0.77,120,0.94,0.88,0.15,92,2010,assertive,0.03,0.10,211
+176,Cobalt Compass,Hazel Theory,k-pop,romantic,0.81,129,0.92,0.73,0.20,60,2020,passionate,0.01,0.11,185
+177,Folded Embers,Vesper Canyon,k-pop,playful,0.95,101,0.83,0.75,0.11,70,2010,whimsical,0.00,0.08,213
+178,Folded Mirrors,Paper Circuit,k-pop,energetic,0.75,135,0.69,0.85,0.11,66,2010,electrified,0.02,0.11,228
+179,Midnight Mirrors,Hazel Theory,k-pop,happy,0.73,131,0.67,0.90,0.13,78,2010,euphoric,0.02,0.13,202
+180,Saffron Harbor,Ezra Okafor,blues,moody,0.55,119,0.41,0.45,0.77,31,2000,nocturnal,0.17,0.06,292
+181,Saffron Fireflies,Ezra Okafor,blues,nostalgic,0.45,67,0.40,0.47,0.87,32,2000,bittersweet,0.13,0.07,308
+182,Window Cassette,Tavi Reyes,blues,wistful,0.28,104,0.54,0.43,0.78,39,2010,reflective,0.11,0.06,265
+183,Distant Engines,Tavi Reyes,blues,relaxed,0.51,67,0.28,0.40,0.55,60,2000,laid-back,0.19,0.05,278
+184,Satellite Daydream,Tavi Reyes,blues,melancholic,0.25,81,0.49,0.39,0.77,60,1990,lonely,0.25,0.07,303
+185,Window Rooftops,Tavi Reyes,blues,moody,0.57,77,0.51,0.56,0.79,28,1980,nocturnal,0.28,0.06,239
+186,Window Waltz,Ezra Okafor,blues,nostalgic,0.41,84,0.45,0.46,0.66,23,1990,homesick,0.06,0.06,200
+187,Harbor Daydream,Quiet Meridian,blues,wistful,0.37,120,0.48,0.40,0.78,20,1980,yearning,0.07,0.03,219
+188,Northern Echoes,Indigo Motel,blues,relaxed,0.38,104,0.45,0.54,0.71,28,1980,intimate,0.05,0.05,237
+189,Copper Harbor,Ezra Okafor,blues,melancholic,0.44,80,0.31,0.51,0.64,53,2000,lonely,0.29,0.04,229
+190,Burning Hourglass,Quiet Meridian,blues,moody,0.32,113,0.50,0.56,0.61,42,1990,brooding,0.25,0.03,301
+191,Borrowed Lanterns,Ember Avenue,r&b,dreamy,0.58,109,0.41,0.82,0.13,76,2000,ethereal,0.04,0.07,247
+192,Northern Mirrors,Solace Engines,r&b,confident,0.39,77,0.64,0.74,0.21,49,2000,swaggering,0.05,0.04,205
+193,Satellite Compass,Ember Avenue,r&b,romantic,0.75,85,0.55,0.70,0.43,64,2010,passionate,0.04,0.10,225
+194,Silver Static,Leilani Novak,r&b,relaxed,0.55,101,0.49,0.67,0.39,72,2000,laid-back,0.02,0.09,197
+195,Folded Waltz,Solace Engines,r&b,moody,0.42,99,0.43,0.63,0.36,70,1990,nocturnal,0.02,0.05,255
+196,Faded Engines,Ezra Brandt,r&b,dreamy,0.64,102,0.55,0.70,0.11,84,2010,floating,0.06,0.04,241
+197,Faded Comets,Leilani Novak,r&b,confident,0.72,101,0.77,0.66,0.42,70,2010,assertive,0.03,0.04,235
+198,Folded Currents,Leilani Novak,r&b,romantic,0.52,104,0.51,0.61,0.35,52,2000,tender,0.03,0.08,252
+199,Northern Avenues,Ember Avenue,r&b,relaxed,0.40,104,0.76,0.67,0.26,54,2000,mellow,0.05,0.06,229
+200,Midnight Lanterns,Ezra Brandt,r&b,moody,0.63,106,0.69,0.60,0.42,53,2010,brooding,0.03,0.05,207
+201,Northern Postcards,Solace Signals,r&b,dreamy,0.57,70,0.45,0.83,0.14,54,2000,floating,0.02,0.06,229
+202,Saffron Comets,Kenji Ferreira,r&b,confident,0.66,85,0.55,0.66,0.21,57,2000,assertive,0.06,0.06,207
+203,Window Horizon,Callum Delacroix,electronic,dreamy,0.91,122,0.46,0.93,0.03,71,2010,floating,0.60,0.05,360
+204,Burning Lanterns,Vesper Season,electronic,happy,0.63,134,0.70,0.78,0.08,83,2020,sunny,0.90,0.07,223
+205,Second Telegram,Joaquin Halloran,electronic,focused,0.95,131,0.58,0.77,0.10,82,2020,focused,0.68,0.04,303
+206,Midnight Driftwood,Polar Engines,electronic,intense,0.83,135,0.75,0.71,0.09,65,2000,defiant,0.89,0.04,254
+207,Midnight Horizon,Granite Choir,electronic,energetic,0.75,121,0.53,0.77,0.14,45,2000,driving,0.62,0.05,287
+208,Slow Voltage,Callum Delacroix,electronic,dreamy,0.93,131,0.43,0.81,0.09,72,2020,ethereal,0.41,0.07,354
+209,Saffron Horizon,Amber Arcade,electronic,happy,0.65,131,0.67,0.92,0.07,84,2010,euphoric,0.89,0.06,275
+210,Copper Voltage,Polar Engines,electronic,focused,0.72,120,0.73,0.82,0.03,82,2020,focused,0.63,0.05,292
+211,Midnight Tides,Vesper Season,electronic,intense,0.80,123,0.35,0.92,0.01,83,2020,fierce,0.71,0.04,338
+212,Tidal Rooftops,Callum Delacroix,electronic,energetic,0.70,134,0.52,0.88,0.03,78,2020,driving,0.68,0.05,266
+213,Restless Skyline,Amber Arcade,electronic,dreamy,0.69,136,0.81,0.93,0.02,49,2010,floating,0.45,0.06,325
+214,Second Cassette,Vesper Season,electronic,happy,0.72,128,0.42,0.75,0.00,59,2010,euphoric,0.78,0.04,343
+215,Midnight Corridor,Tidal Foxes,funk,energetic,0.61,114,0.92,0.82,0.12,66,1980,driving,0.11,0.06,251
+216,Window Compass,Solace Lanterns,funk,carefree,0.66,95,0.78,0.81,0.33,50,2020,breezy,0.16,0.05,283
+217,Paper Postcards,Amaya Takeda,funk,happy,0.85,95,0.79,0.89,0.26,75,2020,radiant,0.14,0.05,262
+218,Hollow Avenues,Marisol Larkspur,funk,confident,0.78,103,0.89,0.81,0.09,58,1990,swaggering,0.28,0.04,254
+219,Slow Harbor,Solace Lanterns,funk,playful,0.61,117,0.77,0.91,0.06,51,2010,exuberant,0.25,0.05,236
+220,Second Embers,Amaya Takeda,funk,energetic,0.77,106,0.73,0.80,0.05,73,1980,electrified,0.29,0.09,289
+221,Harbor Signals,Tidal Foxes,funk,carefree,0.68,98,0.68,0.94,0.34,72,1980,carefree,0.17,0.09,204
+222,Burning Prism,Amaya Takeda,funk,happy,0.76,99,0.91,0.88,0.30,54,1990,sunny,0.05,0.08,234
+223,Restless Signals,Marisol Larkspur,funk,confident,0.64,104,0.82,0.80,0.12,68,1980,assertive,0.30,0.05,218
+224,Saffron Avenues,Crimson Hours,funk,playful,0.80,107,0.66,0.94,0.21,47,1980,whimsical,0.34,0.05,200
+225,Borrowed Tides,Marisol Larkspur,funk,energetic,0.78,114,0.68,0.79,0.11,45,2000,driving,0.24,0.05,252
+226,Second Currents,Marisol Larkspur,funk,carefree,0.74,99,0.91,0.85,0.14,50,2000,carefree,0.31,0.08,284
+227,Glass Static,Granite Avenue,latin,romantic,0.85,100,0.72,0.88,0.43,51,2010,passionate,0.02,0.07,223
+228,Orbit Echoes,Prism Choir,latin,happy,0.77,109,0.92,0.84,0.23,68,2020,radiant,0.01,0.04,220
+229,Harbor Comets,Lumen Engines,latin,energetic,0.90,102,0.69,0.90,0.40,63,2010,driving,0.03,0.08,184
+230,Satellite Driftwood,Granite Avenue,latin,carefree,0.67,122,0.83,0.90,0.27,55,2020,breezy,0.01,0.09,214
+231,Canvas Engines,Prism Choir,latin,playful,0.76,106,0.92,0.80,0.30,49,2000,exuberant,0.05,0.04,237
+232,Harbor Lanterns,Lumen Engines,latin,romantic,0.82,127,0.66,0.85,0.12,82,2000,passionate,0.05,0.06,208
+233,Faded Orchard,Indigo Collective,latin,happy,0.69,114,0.93,0.80,0.18,49,2020,sunny,0.02,0.07,245
+234,Harbor Parade,Tidal Parade,latin,energetic,0.67,102,0.78,0.76,0.44,75,2010,electrified,0.04,0.10,195
+235,Quiet Fireflies,Granite Avenue,latin,carefree,0.70,127,0.70,0.81,0.41,77,2000,carefree,0.02,0.10,240
+236,Wandering Gardens,Prism Choir,latin,playful,0.68,120,0.65,0.90,0.12,61,2010,whimsical,0.02,0.12,237
+237,Wandering Voltage,Indigo Collective,latin,romantic,0.76,113,0.79,0.95,0.30,89,2020,tender,0.05,0.11,246
+238,Morning Embers,Prism Choir,latin,happy,0.73,114,0.91,0.78,0.38,66,2020,sunny,0.05,0.07,237
+239,Paper Orchard,Juniper Garden,punk,energetic,0.93,152,0.33,0.35,0.02,56,1980,driving,0.02,0.05,175
+240,Wandering Avenues,Noor Moreau,punk,cathartic,0.86,166,0.48,0.59,0.00,50,1980,rebellious,0.03,0.15,190
+241,Folded Corridor,Velvet Hours,punk,playful,0.81,151,0.33,0.42,0.07,61,2000,whimsical,0.03,0.11,187
+242,Morning Driftwood,Signal Theory,punk,intense,0.96,181,0.68,0.43,0.08,64,1990,defiant,0.04,0.12,169
+243,Midnight Avenues,Juniper Garden,punk,energetic,0.86,186,0.51,0.38,0.03,37,2000,electrified,0.03,0.09,133
+244,Borrowed Avenues,Noor Moreau,punk,cathartic,0.90,200,0.32,0.38,0.01,48,1980,explosive,0.02,0.07,120
+245,Copper Horizon,Juniper Garden,punk,playful,0.91,175,0.44,0.41,0.02,55,2020,whimsical,0.04,0.11,144
+246,Faded Letters,Cobalt Society,punk,intense,0.95,175,0.50,0.52,0.08,62,2010,fierce,0.03,0.13,144
+247,Slow Hourglass,Velvet Hours,punk,energetic,0.92,168,0.56,0.48,0.03,50,2010,electrified,0.02,0.14,142
+248,Glass Hourglass,Signal Theory,punk,cathartic,0.85,171,0.63,0.43,0.07,59,2020,rebellious,0.01,0.10,189
+249,Tidal Echoes,Velvet Hours,punk,playful,0.97,169,0.60,0.58,0.00,66,2010,whimsical,0.04,0.14,142
+250,Canvas Compass,Velvet Hours,punk,intense,0.96,153,0.58,0.49,0.07,60,2020,triumphant,0.03,0.12,130

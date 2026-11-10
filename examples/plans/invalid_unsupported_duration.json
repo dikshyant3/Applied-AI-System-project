@@ -1,0 +1,11 @@
+{
+  "preferences": {
+    "favorite_genre": "jazz",
+    "favorite_mood": "relaxed",
+    "target_energy": 0.35
+  },
+  "playlist": {
+    "playlist_size": 8,
+    "target_duration_minutes": 45
+  }
+}

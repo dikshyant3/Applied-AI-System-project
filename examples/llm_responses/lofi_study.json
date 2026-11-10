@@ -1,0 +1,20 @@
+{
+  "preferences": {
+    "favorite_genre": {"value": "lofi", "source": "explicit", "evidence": "lofi", "reason": null},
+    "favorite_mood": {"value": "chill", "source": "explicit", "evidence": "relaxing", "reason": null},
+    "target_energy": {"level": "low", "number": null, "source": "explicit", "evidence": "low energy", "reason": null},
+    "target_popularity": null,
+    "preferred_release_decade": null,
+    "preferred_detailed_mood": {"value": "focused", "source": "inferred", "evidence": "for studying", "reason": "studying calls for focused music"},
+    "target_instrumentalness": {"level": "high", "number": null, "source": "explicit", "evidence": "minimal vocals", "reason": null},
+    "target_speechiness": {"level": "very_low", "number": null, "source": "inferred", "evidence": "minimal vocals", "reason": "minimal vocals implies little spoken word"}
+  },
+  "strategy": null,
+  "playlist": {
+    "playlist_size": {"value": 5, "evidence": "five"},
+    "unique_artists": null,
+    "energy_progression": null
+  },
+  "hard_constraints": [],
+  "unsupported_requests": []
+}

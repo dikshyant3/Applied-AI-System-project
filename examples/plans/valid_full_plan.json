@@ -1,0 +1,23 @@
+{
+  "preferences": {
+    "favorite_genre": {"value": "pop", "source": "explicit"},
+    "favorite_mood": {"value": "happy", "source": "explicit"},
+    "target_energy": {"value": 0.9, "source": "explicit"},
+    "target_popularity": {"value": 80, "source": "inferred"},
+    "preferred_release_decade": 2020,
+    "preferred_detailed_mood": "euphoric",
+    "target_instrumentalness": {"value": 0.05, "source": "inferred"},
+    "target_speechiness": {"value": 0.05, "source": "inferred"}
+  },
+  "strategy": "Genre-First",
+  "playlist": {
+    "playlist_size": 4,
+    "unique_artists": true,
+    "energy_progression": "ascending"
+  },
+  "hard_constraints": [
+    {"type": "energy_range", "min": 0.6},
+    {"type": "release_decade", "values": [2020]},
+    {"type": "exclude_artist", "values": ["Max Pulse"]}
+  ]
+}

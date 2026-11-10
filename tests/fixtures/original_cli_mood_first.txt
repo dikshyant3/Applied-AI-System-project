@@ -1,0 +1,160 @@
+Scoring mode: Mood-First
+
+Top recommendations for High-Energy Pop (pop / happy, target energy: 0.90):
+
++------+----------------+---------------+-------------+-------------------------------------------------------+
+| Rank | Song Title     | Artist        | Final Score | Recommendation Reasons                                |
++------+----------------+---------------+-------------+-------------------------------------------------------+
+| 1    | Sunrise City   | Neon Echo     | 5.90        | genre match (+1.0)                                    |
+|      |                |               |             | mood match (+2.0)                                     |
+|      |                |               |             | energy similarity (+0.9)                              |
+|      |                |               |             | popularity similarity (+0.4)                          |
+|      |                |               |             | release decade match (+0.4)                           |
+|      |                |               |             | detailed mood match (+0.6)                            |
+|      |                |               |             | instrumentalness similarity (+0.3)                    |
+|      |                |               |             | speechiness similarity (+0.3)                         |
+|      |                |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 2    | Rooftop Lights | Indigo Parade | 4.20        | genre mismatch (+0.0)                                 |
+|      |                |               |             | mood match (+2.0)                                     |
+|      |                |               |             | energy similarity (+0.9)                              |
+|      |                |               |             | popularity similarity (+0.4)                          |
+|      |                |               |             | release decade match (+0.4)                           |
+|      |                |               |             | detailed mood mismatch (+0.0)                         |
+|      |                |               |             | instrumentalness similarity (+0.3)                    |
+|      |                |               |             | speechiness similarity (+0.3)                         |
+|      |                |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 3    | Gym Hero       | Max Pulse     | 2.57        | genre match (+1.0)                                    |
+|      |                |               |             | mood mismatch (+0.0)                                  |
+|      |                |               |             | energy similarity (+1.0)                              |
+|      |                |               |             | popularity similarity (+0.4)                          |
+|      |                |               |             | release decade match (+0.4)                           |
+|      |                |               |             | detailed mood mismatch (+0.0)                         |
+|      |                |               |             | instrumentalness similarity (+0.3)                    |
+|      |                |               |             | speechiness similarity (+0.3)                         |
+|      |                |               |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 4    | Neon Mirage    | Sora Static   | 2.31        | genre mismatch (+0.0)                                 |
+|      |                |               |             | mood mismatch (+0.0)                                  |
+|      |                |               |             | energy similarity (+1.0)                              |
+|      |                |               |             | popularity similarity (+0.4)                          |
+|      |                |               |             | release decade match (+0.4)                           |
+|      |                |               |             | detailed mood mismatch (+0.0)                         |
+|      |                |               |             | instrumentalness similarity (+0.3)                    |
+|      |                |               |             | speechiness similarity (+0.3)                         |
+|      |                |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 5    | Concrete Bloom | Northline     | 2.27        | genre mismatch (+0.0)                                 |
+|      |                |               |             | mood mismatch (+0.0)                                  |
+|      |                |               |             | energy similarity (+0.9)                              |
+|      |                |               |             | popularity similarity (+0.4)                          |
+|      |                |               |             | release decade match (+0.4)                           |
+|      |                |               |             | detailed mood mismatch (+0.0)                         |
+|      |                |               |             | instrumentalness similarity (+0.3)                    |
+|      |                |               |             | speechiness similarity (+0.3)                         |
+|      |                |               |             | diversity penalty (+0.00: no artist or genre repeats) |
++------+----------------+---------------+-------------+-------------------------------------------------------+
+
+
+Top recommendations for Chill Lofi (lofi / chill, target energy: 0.40):
+
++------+---------------------+----------------+-------------+-------------------------------------------------------+
+| Rank | Song Title          | Artist         | Final Score | Recommendation Reasons                                |
++------+---------------------+----------------+-------------+-------------------------------------------------------+
+| 1    | Midnight Coding     | LoRoom         | 5.96        | genre match (+1.0)                                    |
+|      |                     |                |             | mood match (+2.0)                                     |
+|      |                     |                |             | energy similarity (+1.0)                              |
+|      |                     |                |             | popularity similarity (+0.4)                          |
+|      |                     |                |             | release decade match (+0.4)                           |
+|      |                     |                |             | detailed mood match (+0.6)                            |
+|      |                     |                |             | instrumentalness similarity (+0.3)                    |
+|      |                     |                |             | speechiness similarity (+0.3)                         |
+|      |                     |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 2    | Library Rain        | Paper Lanterns | 4.55        | genre match (+1.0)                                    |
+|      |                     |                |             | mood match (+2.0)                                     |
+|      |                     |                |             | energy similarity (+0.9)                              |
+|      |                     |                |             | popularity similarity (+0.4)                          |
+|      |                     |                |             | release decade match (+0.4)                           |
+|      |                     |                |             | detailed mood mismatch (+0.0)                         |
+|      |                     |                |             | instrumentalness similarity (+0.3)                    |
+|      |                     |                |             | speechiness similarity (+0.3)                         |
+|      |                     |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 3    | Spacewalk Thoughts  | Orbit Bloom    | 3.60        | genre mismatch (+0.0)                                 |
+|      |                     |                |             | mood match (+2.0)                                     |
+|      |                     |                |             | energy similarity (+0.9)                              |
+|      |                     |                |             | popularity similarity (+0.3)                          |
+|      |                     |                |             | release decade mismatch (+0.0)                        |
+|      |                     |                |             | detailed mood mismatch (+0.0)                         |
+|      |                     |                |             | instrumentalness similarity (+0.1)                    |
+|      |                     |                |             | speechiness similarity (+0.3)                         |
+|      |                     |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 4    | Coffee Shop Stories | Slow Stereo    | 1.93        | genre mismatch (+0.0)                                 |
+|      |                     |                |             | mood mismatch (+0.0)                                  |
+|      |                     |                |             | energy similarity (+1.0)                              |
+|      |                     |                |             | popularity similarity (+0.4)                          |
+|      |                     |                |             | release decade mismatch (+0.0)                        |
+|      |                     |                |             | detailed mood mismatch (+0.0)                         |
+|      |                     |                |             | instrumentalness similarity (+0.3)                    |
+|      |                     |                |             | speechiness similarity (+0.3)                         |
+|      |                     |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 5    | Rooftop Lights      | Indigo Parade  | 1.92        | genre mismatch (+0.0)                                 |
+|      |                     |                |             | mood mismatch (+0.0)                                  |
+|      |                     |                |             | energy similarity (+0.6)                              |
+|      |                     |                |             | popularity similarity (+0.3)                          |
+|      |                     |                |             | release decade match (+0.4)                           |
+|      |                     |                |             | detailed mood mismatch (+0.0)                         |
+|      |                     |                |             | instrumentalness similarity (+0.2)                    |
+|      |                     |                |             | speechiness similarity (+0.3)                         |
+|      |                     |                |             | diversity penalty (+0.00: no artist or genre repeats) |
++------+---------------------+----------------+-------------+-------------------------------------------------------+
+
+
+Top recommendations for Deep Intense Rock (rock / intense, target energy: 0.90):
+
++------+-----------------+---------------+-------------+-------------------------------------------------------+
+| Rank | Song Title      | Artist        | Final Score | Recommendation Reasons                                |
++------+-----------------+---------------+-------------+-------------------------------------------------------+
+| 1    | Storm Runner    | Voltline      | 5.55        | genre match (+1.0)                                    |
+|      |                 |               |             | mood match (+2.0)                                     |
+|      |                 |               |             | energy similarity (+1.0)                              |
+|      |                 |               |             | popularity similarity (+0.4)                          |
+|      |                 |               |             | release decade mismatch (+0.0)                        |
+|      |                 |               |             | detailed mood match (+0.6)                            |
+|      |                 |               |             | instrumentalness similarity (+0.3)                    |
+|      |                 |               |             | speechiness similarity (+0.3)                         |
+|      |                 |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 2    | Gym Hero        | Max Pulse     | 4.26        | genre mismatch (+0.0)                                 |
+|      |                 |               |             | mood match (+2.0)                                     |
+|      |                 |               |             | energy similarity (+1.0)                              |
+|      |                 |               |             | popularity similarity (+0.3)                          |
+|      |                 |               |             | release decade match (+0.4)                           |
+|      |                 |               |             | detailed mood mismatch (+0.0)                         |
+|      |                 |               |             | instrumentalness similarity (+0.3)                    |
+|      |                 |               |             | speechiness similarity (+0.3)                         |
+|      |                 |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 3    | Glass Cathedral | Ashes Awake   | 2.31        | genre mismatch (+0.0)                                 |
+|      |                 |               |             | mood mismatch (+0.0)                                  |
+|      |                 |               |             | energy similarity (+0.9)                              |
+|      |                 |               |             | popularity similarity (+0.4)                          |
+|      |                 |               |             | release decade match (+0.4)                           |
+|      |                 |               |             | detailed mood mismatch (+0.0)                         |
+|      |                 |               |             | instrumentalness similarity (+0.3)                    |
+|      |                 |               |             | speechiness similarity (+0.3)                         |
+|      |                 |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 4    | Neon Mirage     | Sora Static   | 2.25        | genre mismatch (+0.0)                                 |
+|      |                 |               |             | mood mismatch (+0.0)                                  |
+|      |                 |               |             | energy similarity (+1.0)                              |
+|      |                 |               |             | popularity similarity (+0.3)                          |
+|      |                 |               |             | release decade match (+0.4)                           |
+|      |                 |               |             | detailed mood mismatch (+0.0)                         |
+|      |                 |               |             | instrumentalness similarity (+0.3)                    |
+|      |                 |               |             | speechiness similarity (+0.3)                         |
+|      |                 |               |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 5    | Rooftop Lights  | Indigo Parade | 2.23        | genre mismatch (+0.0)                                 |
+|      |                 |               |             | mood mismatch (+0.0)                                  |
+|      |                 |               |             | energy similarity (+0.9)                              |
+|      |                 |               |             | popularity similarity (+0.4)                          |
+|      |                 |               |             | release decade match (+0.4)                           |
+|      |                 |               |             | detailed mood mismatch (+0.0)                         |
+|      |                 |               |             | instrumentalness similarity (+0.3)                    |
+|      |                 |               |             | speechiness similarity (+0.3)                         |
+|      |                 |               |             | diversity penalty (+0.00: no artist or genre repeats) |
++------+-----------------+---------------+-------------+-------------------------------------------------------+
+

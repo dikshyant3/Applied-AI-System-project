@@ -1,0 +1,11 @@
+{
+  "preferences": {
+    "favorite_genre": "lofi",
+    "favorite_mood": "chill",
+    "target_energy": 0.4
+  },
+  "playlist": {"playlist_size": 14, "unique_artists": true},
+  "hard_constraints": [
+    {"type": "genre", "values": ["lofi"]}
+  ]
+}

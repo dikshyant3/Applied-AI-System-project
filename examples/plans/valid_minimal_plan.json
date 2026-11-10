@@ -1,0 +1,7 @@
+{
+  "preferences": {
+    "favorite_genre": "lofi",
+    "favorite_mood": "chill",
+    "target_energy": {"value": 0.4, "source": "inferred"}
+  }
+}
