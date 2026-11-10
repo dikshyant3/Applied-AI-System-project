@@ -1,0 +1,21 @@
+flowchart LR
+    User --> Request["Natural-language request"]
+    Request --> Planner["LLM planner<br/>structured JSON only"]
+    Profile[("Local JSON profile")] --> Planner
+    Planner --> Plan["Validated recommendation plan"]
+    Plan --> Orchestrator["Python Plan → Act → Observe → Revise"]
+    Catalog[("Catalog CSV")] --> Filter["Hard-constraint filter"]
+    Orchestrator --> Filter --> VibeMatch["Original VibeMatch scorer<br/>unchanged"]
+    VibeMatch --> Builder["Playlist builder"]
+    Builder --> Validator{"Deterministic validator"}
+    Validator -- valid --> Playlist["Catalog-backed playlist"]
+    Playlist --> User
+    Validator -- retryable --> Observation["Structured failure observation"]
+    Observation --> Planner
+    Validator -- unsupported / impossible / budget exhausted --> Status["Explicit failure status"]
+    Status --> User
+    User --> Feedback["Like / dislike / skip"]
+    Feedback --> Profile
+    Orchestrator -.-> Logs[("JSON workflow events")]
+    Logs --> Evaluation["Mock evaluation harness"]
+    VibeMatch --> Baseline["VibeMatch comparison"]

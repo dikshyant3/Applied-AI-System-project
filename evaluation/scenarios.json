@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "id": "normal-lofi-study",
+      "category": "normal",
+      "request": "I want calm lofi music for studying.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "energy": "low",
+          "detailed_mood": "focused",
+          "detailed_mood_source": "inferred"
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "lofi",
+          "favorite_mood": "chill",
+          "target_energy": 0.25
+        },
+        "k": 5
+      }
+    },
+    {
+      "id": "explicit-overrides-saved-preference",
+      "category": "conflicting_preferences",
+      "request": "I want calm lofi music for studying.",
+      "saved_preferences": {
+        "favorite_genre": "pop"
+      },
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "energy": "low",
+          "detailed_mood": "focused",
+          "detailed_mood_source": "inferred"
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "lofi",
+          "favorite_mood": "chill",
+          "target_energy": 0.25
+        },
+        "k": 5
+      }
+    },
+    {
+      "id": "unsupported-language-metadata",
+      "category": "unsupported_category",
+      "request": "Calm lofi music in French.",
+      "expected_status": "unsupported_metadata",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "genre_source": "inferred",
+          "mood": "chill",
+          "energy": "low",
+          "unsupported": [
+            {
+              "request": "in French",
+              "reason": "the catalog has no language metadata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unique-artists",
+      "category": "unique_artists",
+      "request": "Five relaxed songs by different artists.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "genre_source": "inferred",
+          "mood": "chill",
+          "mood_evidence": "relaxed",
+          "energy": "low",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "unique_artists": true
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "lofi",
+          "favorite_mood": "chill",
+          "target_energy": 0.25
+        },
+        "k": 5,
+        "unique_artists": true
+      }
+    },
+    {
+      "id": "ascending-energy",
+      "category": "energy_progression",
+      "request": "Five relaxed songs that build in energy.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "mood_evidence": "relaxed",
+          "energy": "low",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "energy_progression": "ascending",
+          "energy_progression_evidence": "build in energy"
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "lofi",
+          "favorite_mood": "chill",
+          "target_energy": 0.25
+        },
+        "k": 5,
+        "energy_progression": "ascending"
+      }
+    },
+    {
+      "id": "impossible-small-catalog-subset",
+      "category": "impossible_constraints",
+      "request": "15 lofi songs.",
+      "expected_status": "impossible_request",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "energy": "low",
+          "playlist_size": 15,
+          "playlist_size_evidence": "15 lofi songs",
+          "constraints": [
+            {
+              "type": "genre",
+              "values": ["lofi"],
+              "evidence": "lofi"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "invalid-llm-output",
+      "category": "invalid_llm_response",
+      "request": "I want calm lofi music for studying.",
+      "expected_status": "invalid_plan",
+      "responses": [
+        {"type": "raw", "value": "{not json"},
+        {"type": "raw", "value": "{still not json"},
+        {"type": "raw", "value": "[]"}
+      ]
+    },
+    {
+      "id": "retry-budget-exhaustion",
+      "category": "retry_exhaustion",
+      "request": "Give me 5 calm lofi songs for studying, about 20 minutes long, nothing by Neon Echo.",
+      "max_attempts": 2,
+      "expected_status": "retry_budget_exhausted",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "energy": "low",
+          "detailed_mood": "focused",
+          "detailed_mood_source": "inferred",
+          "playlist_size": 5,
+          "playlist_size_evidence": "5 calm lofi songs",
+          "duration_minutes": 20,
+          "duration_evidence": "about 20 minutes",
+          "constraints": [
+            {
+              "type": "exclude_artist",
+              "values": ["Neon Echo"],
+              "evidence": "nothing by Neon Echo"
+            }
+          ]
+        },
+        {
+          "type": "revision",
+          "preferences": {
+            "preferred_detailed_mood": null
+          },
+          "rationale": "Try other lofi songs for more duration."
+        }
+      ]
+    },
+    {
+      "id": "successful-plan-revision",
+      "category": "retry_success",
+      "request": "Give me 5 calm lofi songs for studying, about 20 minutes long, nothing by Neon Echo.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "lofi",
+          "mood": "chill",
+          "energy": "low",
+          "detailed_mood": "focused",
+          "detailed_mood_source": "inferred",
+          "playlist_size": 5,
+          "playlist_size_evidence": "5 calm lofi songs",
+          "duration_minutes": 20,
+          "duration_evidence": "about 20 minutes",
+          "constraints": [
+            {
+              "type": "exclude_artist",
+              "values": ["Neon Echo"],
+              "evidence": "nothing by Neon Echo"
+            }
+          ]
+        },
+        {
+          "type": "revision",
+          "preferences": {
+            "preferred_detailed_mood": {
+              "value": "cozy",
+              "source": "inferred",
+              "evidence": null,
+              "reason": "cozier tracks are longer"
+            }
+          },
+          "rationale": "Cozy lofi tracks better meet the requested total duration."
+        }
+      ]
+    },
+    {
+      "id": "llm-api-rate-limit",
+      "category": "api_failure",
+      "request": "I want calm lofi music for studying.",
+      "expected_status": "api_failure",
+      "responses": [
+        {
+          "type": "api_failure",
+          "kind": "rate_limit",
+          "message": "evaluation simulated rate limit"
+        }
+      ]
+    }
+  ]
+}
