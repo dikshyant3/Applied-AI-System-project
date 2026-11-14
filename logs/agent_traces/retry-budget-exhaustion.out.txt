@@ -1,0 +1,88 @@
+[mock planner: replaying scenario 'retry-budget-exhaustion'; no API call is made]
+
+Request: Give me 5 calm lofi songs for studying, about 20 minutes long, nothing by Neon Echo.
+Planner model: mock-llm
+Scoring mode: Genre-First (genre weight 2.0, mood weight 1.0)
+Candidates: 246 of 250 catalog songs satisfy the hard constraints
+
+Plan (non-default fields):
+  favorite_genre             lofi                     [explicit] 'lofi'
+  favorite_mood              chill                    [inferred] 'chill' | LLM labelled this explicit, but its evidence 'chill' is not a quote from the request, so it is treated as inferred
+  target_energy              0.25                     [inferred] level 'low' mapped to 0.25 by the documented TuneWise scale
+  playlist_size              5                        [explicit] '5 calm lofi songs'
+  hard_constraints[0]        exclude_artist ['Neon Echo'] [explicit] 'nothing by Neon Echo'
+  target_duration_minutes    20                       [explicit] 'about 20 minutes' | requested total length; enforced by the playlist builder/validator using duration_seconds
+
+Agent loop: RETRY_BUDGET_EXHAUSTED after 2 of 2 attempt(s) - retry budget of 2 attempt(s) exhausted without a valid playlist
+  attempt 1 (initial): constraints_unsatisfied; reasons: duration_out_of_range
+  attempt 2 (revision): constraints_unsatisfied; revised preferred_detailed_mood; reasons: duration_out_of_range
+    rationale: Try other lofi songs for more duration.
+
+Playlist validation: FAILED (5 of 5 songs)
+  [passed     ] song_metadata: all songs have valid metadata
+  [passed     ] catalog_membership: all songs are unmodified catalog records
+  [passed     ] no_duplicate_songs: no song appears twice
+  [passed     ] playlist_size: playlist has the requested 5 songs
+  [passed     ] hard_constraint:exclude_artist: every song satisfies exclude_artist
+  [violated   ] duration: total length 12.2 min is outside 18.0-22.0 min
+
+Playlist (songs ranked by the original VibeMatch recommender; Pos = playlist order):
+
++-----+------+----+-------+-------------+--------+------------+-------------+
+| Pos | Rank | ID | Genre | Mood        | Energy | Base Score | Final Score |
++-----+------+----+-------+-------------+--------+------------+-------------+
+| 1   | 1    | 4  | lofi  | chill       | 0.35   | 4.65       | 4.65        |
+| 2   | 2    | 34 | lofi  | chill       | 0.49   | 4.59       | 3.84        |
+| 3   | 3    | 2  | lofi  | chill       | 0.42   | 4.56       | 3.81        |
+| 4   | 4    | 31 | lofi  | melancholic | 0.26   | 3.83       | 3.08        |
+| 5   | 5    | 33 | lofi  | relaxed     | 0.22   | 3.78       | 3.03        |
++-----+------+----+-------+-------------+--------+------------+-------------+
++------+------------------+----------------+-------------+-------------------------------------------------------+
+| Rank | Song Title       | Artist         | Final Score | Recommendation Reasons                                |
++------+------------------+----------------+-------------+-------------------------------------------------------+
+| 1    | Library Rain     | Paper Lanterns | 4.65        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.9)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood not specified (+0.0)                    |
+|      |                  |                |             | instrumentalness similarity (+0.2)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 2    | Crimson Avenues  | Rowan Larkspur | 3.84        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.8)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood not specified (+0.0)                    |
+|      |                  |                |             | instrumentalness similarity (+0.3)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 3    | Midnight Coding  | LoRoom         | 3.81        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.8)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood not specified (+0.0)                    |
+|      |                  |                |             | instrumentalness similarity (+0.2)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 4    | Static Signals   | Freya Brandt   | 3.08        | genre match (+2.0)                                    |
+|      |                  |                |             | mood mismatch (+0.0)                                  |
+|      |                  |                |             | energy similarity (+1.0)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood not specified (+0.0)                    |
+|      |                  |                |             | instrumentalness similarity (+0.3)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 5    | Harbor Driftwood | Marisol Moreau | 3.03        | genre match (+2.0)                                    |
+|      |                  |                |             | mood mismatch (+0.0)                                  |
+|      |                  |                |             | energy similarity (+1.0)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood not specified (+0.0)                    |
+|      |                  |                |             | instrumentalness similarity (+0.3)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
++------+------------------+----------------+-------------+-------------------------------------------------------+

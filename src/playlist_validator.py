@@ -25,7 +25,9 @@ V7  energy_progression   (if requested) "ascending": every energy >= the previou
 V8  duration             (if requested) Requires a positive numeric ``duration_seconds`` on
                          every catalog song; otherwise UNSUPPORTED (and infeasible). With
                          metadata, the total must be within +/-10% of the target.
-                         Infeasible when all eligible songs together are too short.
+                         Infeasible when all eligible songs together are too short, or
+                         when a song count is also fixed and even the N longest eligible
+                         songs are too short / the N shortest are too long.
 V9  unsupported_request  Each request the planner could not represent is UNSUPPORTED.
 
 "Eligible" songs are the catalog songs that satisfy all hard constraints.
@@ -147,7 +149,8 @@ def validate_playlist(
     if requirements.energy_progression:
         checks.append(_check_energy_progression(songs, requirements, eligible))
     if requirements.target_duration_minutes is not None:
-        checks.append(_check_duration(songs, requirements.target_duration_minutes, catalog, eligible))
+        fixed_size = requirements.size if requirements.size_requested else None
+        checks.append(_check_duration(songs, requirements.target_duration_minutes, catalog, eligible, fixed_size))
     for index, request in enumerate(requirements.unsupported_requests):
         checks.append(ConstraintCheck(
             f"unsupported_request[{index}]", request, UNSUPPORTED,
@@ -350,7 +353,7 @@ def _order_breaks(energies: List[float], rising: bool) -> List[Dict[str, Any]]:
     return breaks
 
 
-def _check_duration(songs, target_minutes: float, catalog, eligible) -> ConstraintCheck:
+def _check_duration(songs, target_minutes: float, catalog, eligible, fixed_size=None) -> ConstraintCheck:
     # Without a duration on every catalog song the requirement cannot be checked at all.
     missing = sum(1 for song in catalog if not has_duration_metadata([song]))
     if not catalog or missing:
@@ -371,14 +374,24 @@ def _check_duration(songs, target_minutes: float, catalog, eligible) -> Constrai
     total = sum(song[DURATION_FIELD] for song in songs) / 60
     low, high = (bound / 60 for bound in duration_bounds_seconds(target_minutes))
     available = sum(song[DURATION_FIELD] for song in eligible) / 60
+    evidence = {"total_minutes": round(total, 2), "allowed_minutes": [round(low, 2), round(high, 2)],
+                "eligible_catalog_minutes": round(available, 2)}
+    infeasible = available < low
+    if fixed_size is not None:
+        # Bounds over ANY choice of `fixed_size` eligible songs (a relaxation of the
+        # real selection rules, so a bound outside the window proves infeasibility).
+        durations = sorted(song[DURATION_FIELD] for song in eligible)
+        count = min(fixed_size, len(durations))
+        shortest = sum(durations[:count]) / 60
+        longest = sum(durations[len(durations) - count:]) / 60 if count else 0.0
+        evidence["possible_minutes_for_size"] = [round(shortest, 2), round(longest, 2)]
+        infeasible = infeasible or longest < low or shortest > high
     return _check(
         "duration", {"target_minutes": target_minutes, "tolerance_ratio": DURATION_TOLERANCE_RATIO},
         low <= total <= high,
         f"total length {total:.1f} min is within {low:.1f}-{high:.1f} min",
         f"total length {total:.1f} min is outside {low:.1f}-{high:.1f} min",
-        {"total_minutes": round(total, 2), "allowed_minutes": [round(low, 2), round(high, 2)],
-         "eligible_catalog_minutes": round(available, 2)},
-        infeasible=available < low,
+        evidence, infeasible=infeasible,
     )
 
 

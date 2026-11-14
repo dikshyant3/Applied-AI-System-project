@@ -8,3 +8,11 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+
+# Human relevance review: answer keys and in-progress ratings stay local
+evaluation/human_review/
+*answer_key*.json
+*answer-key*.json
+
+# Real-catalog build cache (raw Deezer responses and audio measurements)
+data/cache/

@@ -1,0 +1,89 @@
+[mock planner: replaying scenario 'successful-plan-revision'; no API call is made]
+
+Request: Give me 5 calm lofi songs for studying, about 20 minutes long, nothing by Neon Echo.
+Planner model: mock-llm
+Scoring mode: Genre-First (genre weight 2.0, mood weight 1.0)
+Candidates: 246 of 250 catalog songs satisfy the hard constraints
+
+Plan (non-default fields):
+  favorite_genre             lofi                     [explicit] 'lofi'
+  favorite_mood              chill                    [inferred] 'chill' | LLM labelled this explicit, but its evidence 'chill' is not a quote from the request, so it is treated as inferred
+  target_energy              0.25                     [inferred] level 'low' mapped to 0.25 by the documented TuneWise scale
+  preferred_detailed_mood    cozy                     [inferred] cozier tracks are longer; revised in attempt 2: Cozy lofi tracks better meet the requested total duration.
+  playlist_size              5                        [explicit] '5 calm lofi songs'
+  hard_constraints[0]        exclude_artist ['Neon Echo'] [explicit] 'nothing by Neon Echo'
+  target_duration_minutes    20                       [explicit] 'about 20 minutes' | requested total length; enforced by the playlist builder/validator using duration_seconds
+
+Agent loop: SUCCEEDED after 2 of 3 attempt(s) - playlist passed validation on attempt 2
+  attempt 1 (initial): constraints_unsatisfied; reasons: duration_out_of_range
+  attempt 2 (revision): passed; revised preferred_detailed_mood
+    rationale: Cozy lofi tracks better meet the requested total duration.
+
+Playlist validation: PASSED (5 of 5 songs)
+  [passed     ] song_metadata: all songs have valid metadata
+  [passed     ] catalog_membership: all songs are unmodified catalog records
+  [passed     ] no_duplicate_songs: no song appears twice
+  [passed     ] playlist_size: playlist has the requested 5 songs
+  [passed     ] hard_constraint:exclude_artist: every song satisfies exclude_artist
+  [passed     ] duration: total length 21.3 min is within 18.0-22.0 min
+
+Playlist (songs ranked by the original VibeMatch recommender; Pos = playlist order):
+
++-----+------+----+---------+-------+--------+------------+-------------+
+| Pos | Rank | ID | Genre   | Mood  | Energy | Base Score | Final Score |
++-----+------+----+---------+-------+--------+------------+-------------+
+| 1   | 1    | 34 | lofi    | chill | 0.49   | 5.19       | 5.19        |
+| 2   | 2    | 2  | lofi    | chill | 0.42   | 5.16       | 4.41        |
+| 3   | 3    | 4  | lofi    | chill | 0.35   | 4.65       | 3.90        |
+| 4   | 4    | 52 | ambient | chill | 0.24   | 3.37       | 3.37        |
+| 5   | 5    | 67 | jazz    | chill | 0.32   | 3.35       | 3.35        |
++-----+------+----+---------+-------+--------+------------+-------------+
++------+------------------+----------------+-------------+-------------------------------------------------------+
+| Rank | Song Title       | Artist         | Final Score | Recommendation Reasons                                |
++------+------------------+----------------+-------------+-------------------------------------------------------+
+| 1    | Crimson Avenues  | Rowan Larkspur | 5.19        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.8)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood match (+0.6)                            |
+|      |                  |                |             | instrumentalness similarity (+0.3)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 2    | Midnight Coding  | LoRoom         | 4.41        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.8)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood match (+0.6)                            |
+|      |                  |                |             | instrumentalness similarity (+0.2)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 3    | Library Rain     | Paper Lanterns | 3.90        | genre match (+2.0)                                    |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.9)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood mismatch (+0.0)                         |
+|      |                  |                |             | instrumentalness similarity (+0.2)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+| 4    | Cobalt Hourglass | Fable Arcade   | 3.37        | genre mismatch (+0.0)                                 |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+1.0)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood match (+0.6)                            |
+|      |                  |                |             | instrumentalness similarity (+0.2)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (+0.00: no artist or genre repeats) |
+| 5    | Velvet Tides     | Slow Stereo    | 3.35        | genre mismatch (+0.0)                                 |
+|      |                  |                |             | mood match (+1.0)                                     |
+|      |                  |                |             | energy similarity (+0.9)                              |
+|      |                  |                |             | popularity similarity (+0.4)                          |
+|      |                  |                |             | release decade not specified (+0.0)                   |
+|      |                  |                |             | detailed mood match (+0.6)                            |
+|      |                  |                |             | instrumentalness similarity (+0.3)                    |
+|      |                  |                |             | speechiness similarity (+0.2)                         |
+|      |                  |                |             | diversity penalty (+0.00: no artist or genre repeats) |
++------+------------------+----------------+-------------+-------------------------------------------------------+

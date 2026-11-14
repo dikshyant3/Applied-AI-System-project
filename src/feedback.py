@@ -40,6 +40,31 @@ def submit_feedback(store: UserProfileStore, song_id: int, action: str) -> Dict[
     return dict(preferences)
 
 
+def latest_reactions(store: UserProfileStore) -> Dict[int, str]:
+    """Each rated song's most recent action (the history itself is append-only)."""
+    reactions: Dict[int, str] = {}
+    for event in store.feedback:
+        reactions[event["song_id"]] = event["action"]
+    return reactions
+
+
+def clear_feedback(store: UserProfileStore, song_id: int) -> Dict[str, Any]:
+    """Forget every reaction to one song (un-like / un-dislike) and recompute preferences.
+
+    Preferences that only came from feedback are dropped when no like or
+    dislike remains to support them.
+    """
+    store.song(song_id)
+    history = [event for event in store.feedback if event["song_id"] != song_id]
+    if any(event["action"] != "skip" for event in history):
+        preferences = _derive_preferences(history, store)
+    else:
+        derived = {field for field, _ in _CATEGORY_FIELDS + _NUMERIC_FIELDS}
+        preferences = {k: v for k, v in store.preferences.items() if k not in derived}
+    store.replace_feedback(history, preferences)
+    return dict(preferences)
+
+
 def _derive_preferences(history: Sequence[Mapping[str, Any]],
                         store: UserProfileStore) -> Dict[str, Any]:
     preferences = store.preferences
@@ -85,4 +110,4 @@ def _catalog_order(store: UserProfileStore) -> Tuple[int, ...]:
     return store.catalog_ids
 
 
-__all__ = ["submit_feedback"]
+__all__ = ["clear_feedback", "latest_reactions", "submit_feedback"]

@@ -92,11 +92,15 @@ def test_llm_selected_strategy_drives_the_recommender(songs, mode):
 
 
 def test_unsupported_strategy_from_llm_stops_the_workflow():
+    # An invalid plan is retried (Phase 5), but every attempt is invalid here.
     response = llm_response(strategy=label("popularity-first", source="inferred"))
+    client = MockLLMClient([response] * 3)
     with pytest.raises(WorkflowError) as excinfo:
-        run(response)
+        run_recommendation_workflow(CALM_LOFI, client=client)
     assert excinfo.value.stage == "planning"
     assert isinstance(excinfo.value.cause, LLMResponseError)
+    assert excinfo.value.trace.final_status == "invalid_plan"
+    assert len(client.calls) == 3
 
 
 def test_playlist_size_becomes_k():
@@ -183,8 +187,9 @@ def test_workflow_does_not_mutate_catalog(songs):
     ],
 )
 def test_planning_failures_become_workflow_errors(response, cause):
+    # Invalid output is retried up to the budget; API failures are not retried.
     with pytest.raises(WorkflowError) as excinfo:
-        run(response)
+        run_recommendation_workflow(CALM_LOFI, client=MockLLMClient([response] * 3))
     assert excinfo.value.stage == "planning"
     assert isinstance(excinfo.value.cause, cause)
 
@@ -240,11 +245,11 @@ def test_original_cli_output_is_unchanged(monkeypatch, capsys, argv, fixture):
     assert capsys.readouterr().out == (FIXTURES / fixture).read_text()
 
 
-def test_cli_natural_language_request(monkeypatch, capsys):
+def test_cli_natural_language_request(monkeypatch, capsys, tmp_path):
     monkeypatch.setattr(cli, "load_env_file", lambda *a, **k: [])
     monkeypatch.setattr(agent, "create_llm_client", lambda config=None: MockLLMClient([llm_response()]))
 
-    assert cli.main(["--request", CALM_LOFI]) == 0
+    assert cli.main(["--request", CALM_LOFI, "--profile-path", str(tmp_path / "profile.json")]) == 0
     out = capsys.readouterr().out
     assert "Playlist validation: PASSED" in out
     assert "Scoring mode: Genre-First" in out
@@ -253,11 +258,11 @@ def test_cli_natural_language_request(monkeypatch, capsys):
     assert "genre match (+2.0)" in out
 
 
-def test_cli_request_failure_exits_nonzero(monkeypatch, capsys):
+def test_cli_request_failure_exits_nonzero(monkeypatch, capsys, tmp_path):
     monkeypatch.setattr(cli, "load_env_file", lambda *a, **k: [])
     monkeypatch.setattr(agent, "create_llm_client", lambda config=None: MockLLMClient(["oops"]))
 
-    assert cli.main(["--request", CALM_LOFI]) == 1
+    assert cli.main(["--request", CALM_LOFI, "--profile-path", str(tmp_path / "profile.json")]) == 1
     assert "planning failed" in capsys.readouterr().err
 
 

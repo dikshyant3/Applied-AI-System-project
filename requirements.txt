@@ -1,3 +1,9 @@
 pandas
 pytest
 streamlit
+numpy
+# Real catalog: measure audio features from 30-second previews (scripts/build_real_catalog.py)
+librosa
+soundfile
+# RAG: local semantic embeddings (falls back to lexical retrieval if unavailable)
+fastembed

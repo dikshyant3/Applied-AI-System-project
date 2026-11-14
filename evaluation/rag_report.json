@@ -1,0 +1,126 @@
+{
+  "catalog": "data/real_songs.csv",
+  "catalog_size": 1190,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "retrieval": {
+    "k": 10,
+    "mean_precision": {
+      "random": 0.1964,
+      "semantic": 0.7067,
+      "BAAI/bge-small-en-v1.5": 0.74,
+      "lexical": 0.3667
+    },
+    "beats_random": {
+      "semantic": 15,
+      "BAAI/bge-small-en-v1.5": 14,
+      "lexical": 7
+    },
+    "queries": [
+      {
+        "id": "rainy-reading",
+        "random": 0.3294,
+        "semantic": 0.9,
+        "BAAI/bge-small-en-v1.5": 0.9,
+        "lexical": 0.2
+      },
+      {
+        "id": "gym-pump",
+        "random": 0.2622,
+        "semantic": 1.0,
+        "BAAI/bge-small-en-v1.5": 0.9,
+        "lexical": 0.4
+      },
+      {
+        "id": "heartbreak",
+        "random": 0.1681,
+        "semantic": 0.6,
+        "BAAI/bge-small-en-v1.5": 0.7,
+        "lexical": 0.0
+      },
+      {
+        "id": "fall-asleep",
+        "random": 0.2353,
+        "semantic": 1.0,
+        "BAAI/bge-small-en-v1.5": 1.0,
+        "lexical": 1.0
+      },
+      {
+        "id": "beach-party",
+        "random": 0.3294,
+        "semantic": 0.5,
+        "BAAI/bge-small-en-v1.5": 0.6,
+        "lexical": 0.8
+      },
+      {
+        "id": "night-drive",
+        "random": 0.3277,
+        "semantic": 0.8,
+        "BAAI/bge-small-en-v1.5": 0.9,
+        "lexical": 0.4
+      },
+      {
+        "id": "candlelit-dinner",
+        "random": 0.1336,
+        "semantic": 0.6,
+        "BAAI/bge-small-en-v1.5": 1.0,
+        "lexical": 0.1
+      },
+      {
+        "id": "deep-work",
+        "random": 0.2622,
+        "semantic": 1.0,
+        "BAAI/bge-small-en-v1.5": 1.0,
+        "lexical": 1.0
+      },
+      {
+        "id": "road-trip",
+        "random": 0.2345,
+        "semantic": 0.8,
+        "BAAI/bge-small-en-v1.5": 0.8,
+        "lexical": 1.0
+      },
+      {
+        "id": "rebellion",
+        "random": 0.1345,
+        "semantic": 0.2,
+        "BAAI/bge-small-en-v1.5": 0.4,
+        "lexical": 0.1
+      },
+      {
+        "id": "korean-idols",
+        "random": 0.0336,
+        "semantic": 0.6,
+        "BAAI/bge-small-en-v1.5": 0.8,
+        "lexical": 0.0
+      },
+      {
+        "id": "groove-70s",
+        "random": 0.0336,
+        "semantic": 0.1,
+        "BAAI/bge-small-en-v1.5": 0.0,
+        "lexical": 0.0
+      },
+      {
+        "id": "homesick",
+        "random": 0.2008,
+        "semantic": 0.8,
+        "BAAI/bge-small-en-v1.5": 0.6,
+        "lexical": 0.0
+      },
+      {
+        "id": "space-float",
+        "random": 0.1605,
+        "semantic": 0.8,
+        "BAAI/bge-small-en-v1.5": 0.5,
+        "lexical": 0.0
+      },
+      {
+        "id": "swagger",
+        "random": 0.1008,
+        "semantic": 0.9,
+        "BAAI/bge-small-en-v1.5": 1.0,
+        "lexical": 0.5
+      }
+    ]
+  }
+}

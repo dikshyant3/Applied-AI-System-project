@@ -81,6 +81,23 @@ class UserProfileStore:
         profile["feedback"].append({"song_id": song_id, "action": action})
         self._write(profile)
 
+    def replace_feedback(self, feedback: Sequence[Mapping[str, Any]],
+                         preferences: Mapping[str, Any]) -> None:
+        """Replace the whole feedback history (e.g. after un-liking a song) and its preferences."""
+        if not isinstance(preferences, Mapping):
+            raise ValueError("preferences must be a mapping")
+        events = []
+        for event in feedback:
+            self.song(event["song_id"])
+            if event.get("action") not in ("like", "dislike", "skip"):
+                raise ValueError("action must be 'like', 'dislike', or 'skip'")
+            events.append({"song_id": event["song_id"], "action": event["action"]})
+        self._validate_preferences(preferences)
+        profile = self._read()
+        profile["preferences"] = dict(preferences)
+        profile["feedback"] = events
+        self._write(profile)
+
     def reset(self) -> None:
         """Clear saved preferences and feedback while keeping a valid empty profile."""
         self._write({"version": PROFILE_VERSION, "preferences": {}, "feedback": []})

@@ -249,6 +249,128 @@
           "message": "evaluation simulated rate limit"
         }
       ]
+    },
+    {
+      "id": "rock-workout-exclude-artist",
+      "category": "exclude_artist",
+      "request": "Five energetic rock songs for a workout, nothing by Voltline.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "rock",
+          "mood": "energetic",
+          "energy": "high",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "constraints": [
+            {
+              "type": "exclude_artist",
+              "values": ["Voltline"],
+              "evidence": "nothing by Voltline"
+            }
+          ]
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "rock",
+          "favorite_mood": "energetic",
+          "target_energy": 0.85
+        },
+        "k": 5
+      }
+    },
+    {
+      "id": "sad-blues-or-folk",
+      "category": "multi_genre_constraint",
+      "request": "Five melancholic blues or folk songs.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "blues",
+          "mood": "melancholic",
+          "energy": "low",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "constraints": [
+            {
+              "type": "genre",
+              "values": ["blues", "folk"],
+              "evidence": "blues or folk"
+            },
+            {
+              "type": "mood",
+              "values": ["melancholic"],
+              "evidence": "melancholic"
+            }
+          ]
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "blues",
+          "favorite_mood": "melancholic",
+          "target_energy": 0.3
+        },
+        "k": 5
+      }
+    },
+    {
+      "id": "ambient-wind-down",
+      "category": "energy_progression",
+      "request": "Five ambient songs to wind down that get calmer as they go.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "ambient",
+          "mood": "chill",
+          "mood_source": "inferred",
+          "energy": "low",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "energy_progression": "descending",
+          "energy_progression_evidence": "get calmer as they go"
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "ambient",
+          "favorite_mood": "chill",
+          "target_energy": 0.25
+        },
+        "k": 5,
+        "energy_progression": "descending"
+      }
+    },
+    {
+      "id": "happy-pop-unique-artists",
+      "category": "unique_artists",
+      "request": "Five happy pop songs, each by a different artist.",
+      "expected_status": "succeeded",
+      "responses": [
+        {
+          "type": "plan",
+          "genre": "pop",
+          "mood": "happy",
+          "energy": "medium",
+          "playlist_size": 5,
+          "playlist_size_evidence": "Five",
+          "unique_artists": true,
+          "unique_artists_evidence": "each by a different artist"
+        }
+      ],
+      "baseline": {
+        "preferences": {
+          "favorite_genre": "pop",
+          "favorite_mood": "happy",
+          "target_energy": 0.75
+        },
+        "k": 5,
+        "unique_artists": true
+      }
     }
   ]
 }

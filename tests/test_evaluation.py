@@ -7,11 +7,11 @@ def test_mock_evaluation_covers_scenarios_and_reports_real_metrics():
     report = evaluate_scenarios(mode="mock")
 
     assert report["evaluation_mode"] == "deterministic_mock_llm"
-    assert report["scenario_count"] == 10
+    assert report["scenario_count"] == 14
     assert report["metrics"]["plan_validity_rate"] > 0
     assert report["metrics"]["mean_execution_latency_ms"] > 0
     assert report["metrics"]["error_handling_accuracy"] == 1
-    assert report["vibematch_comparison"]["scenario_count"] == 4
+    assert report["vibematch_comparison"]["scenario_count"] == 8
     assert {
         row["id"]: row["actual_status"] for row in report["scenarios"]
     } == {
@@ -25,6 +25,10 @@ def test_mock_evaluation_covers_scenarios_and_reports_real_metrics():
         "retry-budget-exhaustion": "retry_budget_exhausted",
         "successful-plan-revision": "succeeded",
         "llm-api-rate-limit": "api_failure",
+        "rock-workout-exclude-artist": "succeeded",
+        "sad-blues-or-folk": "succeeded",
+        "ambient-wind-down": "succeeded",
+        "happy-pop-unique-artists": "succeeded",
     }
 
 

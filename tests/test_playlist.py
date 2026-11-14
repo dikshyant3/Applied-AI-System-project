@@ -287,12 +287,22 @@ def test_duration_without_metadata_is_unsupported_not_passed(catalog):
 
 
 def test_duration_with_metadata_pass_and_fail():
-    songs = [make_song(i, f"x{i}", 0.5, duration=300) for i in range(1, 7)]  # 5 min each
+    # four 5-min songs and four 1-min songs: some 4-song selection could fit 10 min
+    songs = [make_song(i, f"x{i}", 0.5, duration=300 if i <= 4 else 60) for i in range(1, 9)]
     ok = validate_playlist(songs[:2], reqs(2, target_duration_minutes=10), songs).check("duration")
     long = validate_playlist(songs[:4], reqs(4, target_duration_minutes=10), songs).check("duration")
     assert ok.status == PASSED
     assert long.status == VIOLATED and long.evidence["total_minutes"] == 20.0
-    assert not long.infeasible
+    assert not long.infeasible  # fixable by choosing other songs
+    assert long.evidence["possible_minutes_for_size"] == [4.0, 20.0]
+
+
+def test_duration_impossible_for_fixed_song_count_is_infeasible():
+    songs = [make_song(i, f"x{i}", 0.5, duration=300) for i in range(1, 7)]  # 5 min each
+    too_long = validate_playlist(songs[:4], reqs(4, target_duration_minutes=10), songs).check("duration")
+    assert too_long.status == VIOLATED and too_long.infeasible  # any 4 songs = 20 min
+    too_short = validate_playlist(songs[:2], reqs(2, target_duration_minutes=30), songs).check("duration")
+    assert too_short.status == VIOLATED and too_short.infeasible  # the longest 2 = 10 min
 
 
 def test_duration_longer_than_catalog_is_infeasible():

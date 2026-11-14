@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "cases": [
+    {"scenario_id": "normal-lofi-study", "playlist_comparison": false},
+    {"scenario_id": "ascending-energy", "playlist_comparison": true},
+    {"scenario_id": "rock-workout-exclude-artist", "playlist_comparison": false},
+    {"scenario_id": "sad-blues-or-folk", "playlist_comparison": false},
+    {"scenario_id": "ambient-wind-down", "playlist_comparison": true},
+    {"scenario_id": "happy-pop-unique-artists", "playlist_comparison": true}
+  ]
+}
