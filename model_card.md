@@ -1,139 +1,189 @@
-# TuneWise AI Model Card
+# TuneWise AI — Model Card
 
-**Status:** Implemented features are identified below; this card does not
-claim a production deployment or independent model evaluation.
+**What this is:** a description of the AI parts of TuneWise, the data they use,
+how well they work, where they fail, and how I built them with AI help. It does
+not claim a production deployment.
 
-## System overview
+---
 
-TuneWise is a music recommendation application built on the original VibeMatch
-content-based scorer. A configured Groq-compatible LLM interprets a natural
-language request into a structured plan. Python validates the plan, runs the
-existing scorer and playlist tools, validates the output, and may request a
-bounded revision after a retryable failure.
+## 1. System overview
 
-The model does not select tracks, rank tracks, calculate scores, create
-metadata, write profile files, or execute generated code. The scoring
-algorithm in `src/recommender.py` is unchanged.
+TuneWise is a music recommender built on my earlier project **VibeMatch**
+(a content-based scorer from Modules 1–3). It adds three AI pieces:
 
-## Intended use
+1. **An LLM planner** (Groq, `qwen/qwen3.8-27b`, temperature 0, JSON-schema
+   output) that turns a request into a structured plan and, when a playlist
+   check fails, revises that plan.
+2. **Retrieval (RAG)** with the Hugging Face embedding model
+   `sentence-transformers/all-MiniLM-L6-v2`, run locally through FastEmbed.
+   It retrieves catalog songs similar to the request, gives their labels to the
+   planner as hints, and narrows which songs get ranked.
+3. **Personalization**: likes/dislikes update a saved profile; a "taste
+   centroid" of liked songs' embeddings drives prompt-free *For You* picks.
 
-- Recommend tracks that already exist in the selected catalog (`data/songs.csv`
-  or `data/real_songs.csv`) and let the listener hear a 30-second preview.
-- Translate supported natural-language preferences and playlist rules into
-  validated fields.
-- Use local, optional feedback to improve stored soft preferences.
-- Demonstrate bounded tool-using workflow behavior with reproducible mock
-  tests and evaluation scenarios.
+What the LLM is **not** allowed to do: choose, rank or score songs; invent song
+data; change your explicit rules during a retry; write profile files; or run
+code. Python does all of that, and VibeMatch's scoring (`src/recommender.py`)
+is unchanged.
 
-This project is not a general music search engine, a streaming service, or a
+## 2. Intended use
+
+- Recommend songs that exist in the selected catalog (`data/real_songs.csv`
+  or the synthetic `data/songs.csv`) and play a 30-second Deezer preview.
+- Translate natural-language preferences and playlist rules (size, unique
+  artists, total duration, energy order, excluded artists) into checked fields.
+- Learn soft preferences from local 👍 / 👎 feedback.
+- Demonstrate a bounded, testable agent workflow.
+
+Not intended as a streaming service, a general music search engine, or any
 high-stakes decision system.
 
-## Model and data
+## 3. Data
 
-- **Live provider:** Groq-compatible HTTP chat completions.
-- **Default model:** `qwen/qwen3.8-27b` (override with
-  `TUNEWISE_LLM_MODEL`).
-- **Generation settings:** temperature 0; structured JSON-schema response.
-- **Mock evaluation:** scripted `MockLLMClient` responses; no provider call.
-- **Catalog:** local CSV with genre, mood, artist, energy, and selected
-  supported attributes. Duration exists in this checked-in catalog, but
-  applications must not assume other catalogs contain it.
-- **Real catalog:** `data/real_songs.csv`, 1,190 tracks by 941 artists collected
-  from public Deezer playlists for 30 seed labels (20 genres). Cover art, links and
-  30-second previews come from Deezer; audio is streamed by the listener and never
-  stored by TuneWise.
-  - *Measured* from each preview with librosa: tempo and energy (loudness, onset
-    strength and brightness, as a percentile within the catalog). Tempo is halved
-    for slow genres when the beat tracker reports double time.
-  - *Estimated*: danceability and acousticness (audio proxies), valence (mood label
-    prior + brightness), instrumentalness and speechiness (genre priors).
-  - *Labels*: genre, mood and detailed mood are inherited from the seed search, not
-    annotated per song, so they are weak and sometimes wrong. Release decade comes
-    from Deezer release dates, which are often reissue dates (58% of tracks fall in
-    the 2020s).
-- **RAG embeddings:** Hugging Face `sentence-transformers/all-MiniLM-L6-v2`
-  (ONNX via FastEmbed), run locally; request text
-  is embedded on the user's machine. Fallback: lexical hashing retriever.
-- **Profile:** optional JSON at `~/.tunewise/profile.json` (`profile-real.json`
-  for the real catalog), overridable by `--profile-path`.
+| Data | Source | Notes |
+|---|---|---|
+| **Real catalog** `data/real_songs.csv` | Free Deezer API (no key), built by `scripts/build_real_catalog.py` | 1,190 tracks, 941 artists, 20 genres, 30 seed searches (e.g. "late night jazz") |
+| Tempo, energy | **Measured** from each 30 s preview with librosa | Energy = loudness + onset strength + brightness, as a percentile in the catalog. Tempo halved for slow genres when the beat tracker doubles it. |
+| Danceability, acousticness | **Estimated** from audio proxies | Pulse clarity, brightness, noisiness |
+| Valence, instrumentalness, speechiness | **Estimated** from mood/genre priors | e.g. hip-hop → higher speechiness |
+| Genre, mood, detailed mood | Inherited from the seed playlist search | Playlist-level labels, not per-song annotation |
+| Tags | Titles of the Deezer playlists a song appeared in | Used as free-text retrieval documents |
+| Release decade | Deezer release date | Often reissue dates: 58% of tracks fall in the 2020s |
+| Synthetic catalog `data/songs.csv` | Generated by `scripts/generate_songs.py` | 250 songs; used for tests and the reproducible evaluation |
+| Profile | `~/.tunewise/profile.json` / `profile-real.json` | Local JSON; preferences + like/dislike history |
 
-## Safeguards
+Audio is never stored: each preview was downloaded once to measure it, then
+discarded. In the web page the listener's browser streams previews from Deezer.
 
-- Plans are parsed and validated against supported schema values and catalog
-  vocabulary.
-- Explicit user choices and hard constraints are immutable during revision.
-- The orchestrator caps total attempts at three by default and detects repeated
-  plans.
-- Impossible and unsupported conditions are reported; they are not relaxed.
-- Playlist songs and metadata come from catalog rows only.
-- Saved profiles are modified only by application feedback/profile code.
-- Logs omit raw requests, evidence excerpts, song titles, and credentials.
+## 4. Safeguards
 
-## Evaluation
+- **Schema + vocabulary checks:** plans must use the catalog's real labels.
+- **Evidence rule:** a value marked "explicit" must quote the user's exact
+  words; otherwise it is downgraded to "inferred".
+- **Locked fields:** explicit choices and hard rules cannot change during a
+  revision; this is verified in code after every revision.
+- **Bounded loop:** max 3 attempts by default, hard ceiling 10; repeated plans
+  stop the loop.
+- **No silent relaxing:** impossible or unsupported requests are reported
+  (`impossible_request`, `unsupported_metadata`), never quietly weakened.
+- **Catalog-only output:** every playlist song is an unmodified catalog row.
+- **RAG hints are not evidence:** the prompt forbids using retrieved songs as
+  user evidence, hard constraints or instructions.
+- **Private logs:** JSON events contain counts, labels and statuses, but not
+  request text, evidence quotes, song titles or API keys.
+- **Rate limits:** the Deezer client throttles and retries quota errors; the
+  live evaluation backs off on Groq rate limits.
 
-`evaluation/scenarios.json` includes fourteen deterministic cases. The latest
-measured mock run had 14/14 expected status matches, 0.8571 plan validity,
-0.6429 constraint satisfaction, 0.8242 mean artist diversity, 0.3333 retry
-success, 1.0000 expected-status accuracy, and 206.81 ms mean end-to-end
-orchestration latency. The rate metrics use all fourteen scenarios, including
-expected unsupported, impossible, invalid, and failed outcomes; the evaluator
-does not treat those outcomes as successes.
+## 5. Evaluation results
 
-The VibeMatch comparison uses eight scenarios with explicit matching baseline
-preferences. On that run, baseline artist diversity was 1.0000, checked
-constraint satisfaction was 0.7500, and recommender-call latency was 2.31 ms.
-TuneWise artist diversity was 1.0000, constraint satisfaction was 1.0000, and
-orchestration-plus-mock latency was 218.75 ms. This is a scripted, local
-comparison: the latency measurements are not comparable to live API latency,
-and no human relevance judgments were collected yet (the blinded review
-workflow is described in the README).
+| Evaluation | Result |
+|---|---|
+| Automated tests (`pytest -q`) | **385 passed**, 1 skipped (optional live API test) |
+| Mock scenarios (`evaluation.evaluate --mode mock`) | **14 / 14** expected outcomes; plan validity 0.86; constraint satisfaction 0.64 over all 14 (failures count as 0); retry success 1 / 3; error handling 1.00 |
+| TuneWise vs original VibeMatch (8 shared scenarios) | Playlist rules met: **1.00 vs 0.75**; artist diversity 1.00 vs 1.00 |
+| Retrieval precision@10, 15 descriptive queries | MiniLM **0.71** (beat random 15/15) · bge-small 0.74 · keyword 0.37 · random 0.20 |
+| Full live workflow, 15 queries, without vs with RAG | label precision 1.00 vs 0.99 (14 ties, 1 worse; measured with the earlier bge-small embedder) |
+| Single live before/after ("neon city lights at 2am") | synthwave songs: 1 / 5 without RAG → **5 / 5 with RAG** |
+| Human relevance ratings | Tool built (`evaluation/quality.py`, blinded), **no ratings collected yet** |
 
-Live evaluation is opt-in (`python -m evaluation.evaluate --mode live`),
-uses real provider calls, may cost money, and is not included in the mock
-results above.
+The retrieval and RAG metrics use playlist-inherited labels, so they are
+relative comparisons, not human judgments of quality.
 
-## Retrieval (RAG) evaluation
+---
 
-`python -m evaluation.rag_eval` scores label precision@10 on 15 descriptive
-queries (`evaluation/rag_queries.json`) that avoid the label words. On the real
-catalog: MiniLM semantic retrieval **0.71** (bge-small-en-v1.5: 0.74), lexical
-retrieval 0.37, random base rate 0.20; MiniLM beat random on 15/15 queries. Its weakest queries were
-"groovy bass lines and disco vibes from the seventies" (0.1) and "angry fast songs
-about not fitting in" (0.2). Because labels are inherited from
-playlists, this is a relative comparison, not a human relevance judgment.
+## 6. Limitations and biases
 
-**Full workflow, live LLM (`--live`, one run, 15 queries, 5 songs each):**
-TuneWise without RAG reached label precision 1.00 and TuneWise + RAG 0.99
-(14 ties, 1 worse: the "seventies disco" request, where plain TuneWise reported the
-decade as unsupported metadata and RAG-narrowed ranking let one non-funk song in).
-So on this metric RAG gives **no measurable gain** once the LLM planner is involved:
-the planner already maps these descriptive requests to the right genre/mood labels,
-and VibeMatch then ranks by exactly those labels, so the metric saturates. RAG's
-demonstrated value here is retrieval without an LLM (Vibe search, 0.71 vs 0.37
-lexical) and tag-grounded explanations; showing a playlist-quality gain would need
-human ratings rather than these label checks.
+- **Catalog bias.** The real catalog is built from *popular* Deezer playlists
+  found with English search phrases. Recent, mainstream, English-language and
+  Western music is over-represented; many regional genres don't exist in it at
+  all, so TuneWise can't recommend them. The 58% "2020s" share partly comes
+  from reissue dates, so decade requests are unreliable.
+- **Label bias.** A song inherits the genre and mood of the playlist search it
+  was found in. A sad song in a "workout" playlist gets labelled energetic. The
+  mood → valence prior also bakes in my own assumptions (e.g. "melancholic =
+  low valence").
+- **Estimated features.** Only tempo and energy are measured. Energy is
+  relative to this catalog (a percentile), so a quiet old recording of a lively
+  swing tune can score as low energy.
+- **Popularity bias in cold start.** New users see the most popular song per
+  genre, which reinforces already-popular artists.
+- **Filter bubble.** After a few likes in one genre, *For You* stays in that
+  genre: the similarity pool is dominated by it, and VibeMatch's diversity
+  penalty only reorders inside the pool.
+- **The LLM can misunderstand** a request. Validation stops it from breaking
+  rules but cannot make its guesses correct.
+- **Unsupported attributes** (language, lyrics, specific songs) are reported,
+  not handled.
+- **Embedding model limits.** MiniLM retrieval was weak on era-specific
+  requests ("seventies disco": 0.1 precision).
+- **External dependencies.** Previews depend on Deezer's availability,
+  regional rights and terms; Groq's free tier rate-limits heavy use.
 
+## 7. Could it be misused, and how is that prevented?
 
-## Limitations and risks
+| Possible misuse | Risk | Prevention in TuneWise |
+|---|---|---|
+| **Prompt injection** — a request like "ignore your rules and…" | The LLM could output a plan that drops rules | The request is passed as JSON *data* and the prompt says to ignore instructions inside it; the plan must still pass the schema, vocabulary and evidence checks; the LLM can't run code or choose songs. |
+| **Poisoned retrieved text** — playlist titles are written by strangers on Deezer | A title could contain instructions | Retrieved tags go to the planner only as labelled hints; the prompt says to ignore instructions in them; they can't become explicit evidence or hard rules. |
+| **Redistributing music** | Downloading or re-hosting audio would break Deezer's terms and artists' rights | Audio is never stored or served by TuneWise; previews are streamed from Deezer with an "Open on Deezer" link. |
+| **Privacy leaks** — sensitive text typed into a request | Request text sent to an LLM provider or kept in logs | Logs exclude request text and titles; embeddings run locally; `ai_interactions.md` warns not to type sensitive data; only Groq receives the request text. |
+| **Overloading free APIs** | Hammering Deezer or Groq | Built-in throttling, retry back-off and a one-time offline catalog build instead of per-request calls. |
+| **Over-trusting the output** | Treating labels/estimates as facts | The UI and docs state which features are measured vs estimated, and explanations show the actual score parts. |
 
-- The synthetic dataset is small; the real catalog (~1,200 tracks) is a sample of
-  popular Deezer playlists and over-represents recent and English-language music.
-- Real-catalog genre/mood labels are playlist-level, and most audio features other
-  than tempo and energy are estimates.
-- For You can form a filter bubble: after a few likes in one genre, the
-  similarity pool is dominated by that genre (VibeMatch's genre-diversity penalty
-  only reorders within the pool). Synthetic demo songs have no cover or preview.
-- Deezer previews depend on Deezer's availability, regional rights and terms.
-- The model can misunderstand a request; deterministic validation limits the
-  effects but does not guarantee recommendation relevance.
-- Unsupported catalog properties such as language are not inferred.
-- Feedback uses deterministic like/dislike votes and liked-song feature means;
-  it is a simple preference heuristic, not a learned ranking model.
-- Local profile and stderr-log retention are the operator's responsibility.
-- Provider behavior, availability, and model outputs can change over time.
+## 8. What surprised me while testing reliability
 
-## Planned or unsupported
+- **RAG helped one clear example but not my average metric.** For "neon city
+  lights at 2am" RAG turned a 4-of-5 hip-hop playlist into 5 synthwave songs,
+  yet over 15 live requests the label-based score was 1.00 without RAG and 0.99
+  with it. The planner already guesses the right labels for most requests, so
+  the metric saturated and hid the difference.
+- **A "good" model choice barely mattered.** MiniLM and bge-small differed by
+  0.03 precision on 15 queries — within noise; each won on different queries.
+- **Real data broke "simple" assumptions.** Deezer's BPM field was usually `0`;
+  librosa reported lofi songs at double tempo (161 instead of ~80 BPM); preview
+  links expire after ~15 minutes; MP3s with an ID3 header wouldn't decode until
+  I stripped it.
+- **My first evaluation was wrong.** Groq rate-limited the first live run after
+  a few requests, and my script counted those failed runs as 0 precision. I
+  only caught it because the per-query results looked suspicious; I added
+  back-off and excluded failed runs from averages.
+- **The guardrails caught the LLM claiming things the user didn't say** — e.g.
+  labelling "chill" as explicit when the request never said "chill".
 
-No user accounts, cloud profile storage, live per-request catalog lookup (the
-catalog is built offline), human-rated quality benchmark, or production
-service-level guarantees are implemented.
+## 9. Collaboration with AI during this project
+
+I built TuneWise with an AI coding assistant (Claude Code). I used it to
+explore options, write and test code, run evaluations and draft documentation;
+I made the product decisions and reviewed results before keeping them.
+
+**A suggestion I accepted:** how to get audio features without Spotify. The
+assistant tested Deezer first and found that its BPM field was usually 0. It
+then suggested **measuring tempo and energy from each 30-second preview with
+librosa, and taking genre/mood labels from the Deezer playlists songs were
+found in**, while recording in every row which values are measured and which
+are estimated. I accepted it because it gave real numbers where they mattered,
+needed no extra API key, and was honest about what is only an estimate.
+
+**A suggestion I changed:** the embedding model. The assistant's implementation
+used `BAAI/bge-small-en-v1.5`. I asked to switch to the Hugging Face
+`sentence-transformers/all-MiniLM-L6-v2` model instead. When we evaluated both,
+bge-small scored slightly higher (0.74 vs 0.71), but the gap was within noise,
+MiniLM beat random on every query (15/15 vs 14/15), and MiniLM is the
+better-known, easier-to-explain standard model. I kept MiniLM as the default and
+left bge-small as a configurable option (`TUNEWISE_EMBEDDING_MODEL`).
+
+**A suggestion I scoped down:** the assistant offered to make TuneWise search
+Deezer live on every request. I didn't adopt it: it would make each request
+10–30 seconds slower (audio has to be measured), hit rate limits, and make
+results impossible to reproduce for testing. The offline catalog was the
+better fit for this project.
+
+**Where the AI was wrong and I had to check it:** its first live RAG evaluation
+script counted rate-limited runs as 0 precision, which made RAG look much
+better than it was. Reviewing the per-query output exposed the bug.
+
+## 10. Not implemented
+
+No user accounts or cloud profiles, no live per-request catalog search, no
+song language or lyrics, no collected human relevance ratings, and no
+production service guarantees.

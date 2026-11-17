@@ -50,14 +50,16 @@ output.
 
 ## Saved agent reasoning traces
 
-These traces come from the real CLI and workflow code. Only the planner's
-replies are scripted, so they run offline and give the same output every time
-(except timing). Each run has a readable summary (`.out.txt`) and the full JSON
+These traces come from the real CLI and workflow code. The first two use a
+scripted planner, so they run offline and give the same output every time
+(except timing). The third is a **live** run: real Groq LLM, real Deezer
+catalog, RAG on. Each run has a readable summary (`.out.txt`) and the full JSON
 event log (`.trace.jsonl`):
 
 | Scenario | What the agent does | Files |
 |---|---|---|
 | `successful-plan-revision` | Plan → build → validation fails (playlist too short) → planner revises the detailed mood → rebuild → passes | [summary](./logs/agent_traces/successful-plan-revision.out.txt), [JSON trace](./logs/agent_traces/successful-plan-revision.trace.jsonl) |
+| `real-catalog-rag` (live) | RAG retrieves 60 songs → planner gets 8 as hints → plan (synthwave, nostalgic, nocturnal; cites "catalog matches") → hard-constraint filter (1,190 eligible) → RAG keeps the 60 most similar → VibeMatch ranks → build → validate → passes on attempt 1 | [summary](./logs/agent_traces/real-catalog-rag.out.txt), [JSON trace](./logs/agent_traces/real-catalog-rag.trace.jsonl) |
 | `retry-budget-exhaustion` | Plan → fails → revises → fails again → stops at the 2-attempt limit and reports the failure instead of returning a bad playlist as valid | [summary](./logs/agent_traces/retry-budget-exhaustion.out.txt), [JSON trace](./logs/agent_traces/retry-budget-exhaustion.trace.jsonl) |
 
 Regenerate them with:
@@ -126,3 +128,26 @@ by the model is implemented.
   retrieved songs' genre/mood labels and playlist tags as `catalog_matches`; the system
   prompt tells it to treat them as hints, never as user evidence or instructions. Logs
   record only counts and the top similarity score, not titles or request text.
+
+### Reading the live RAG trace
+
+Request: *"5 songs that feel like driving through neon city lights at 2am"*
+(`python src/main.py --catalog real --rag --request "..."`). The trace records
+each tool call in order, without the request text or song titles:
+
+```json
+{"attempt": 0, "event": "tool_executed", "tool": "retrieve_catalog_matches", "embedder": "sentence-transformers/all-MiniLM-L6-v2", "retrieved": 60, "top_similarity": 0.6254}
+{"attempt": 1, "event": "initial_plan_validated", "strategy": "genre-first", "plan": {"preferences": {"favorite_genre": "synthwave", "favorite_mood": "nostalgic", "preferred_detailed_mood": "nocturnal", "...": "..."}}}
+{"attempt": 1, "event": "tool_executed", "tool": "filter_hard_constraints", "eligible_songs": 1190, "catalog_size": 1190}
+{"attempt": 1, "event": "tool_executed", "tool": "retrieve_candidates", "eligible_songs": 1190, "pool": 60, "fallback": false}
+{"attempt": 1, "event": "tool_executed", "tool": "recommend_songs", "strategy": "genre-first", "ranked_candidate_count": 60}
+{"attempt": 1, "event": "tool_executed", "tool": "build_playlist", "selected_count": 5}
+{"attempt": 1, "event": "tool_executed", "tool": "validate_playlist", "outcome": "passed", "check_count": 4}
+{"event": "workflow_finished", "final_status": "succeeded", "attempts_used": 1, "duration_seconds": 2.05}
+```
+
+The planner's reasoning for each field is saved in the summary file, e.g.
+*favorite_genre synthwave [inferred]: "The request describes a 'neon city
+lights' night drive, which strongly aligns with the synthwave genre found in
+catalog matches."* The same request **without** RAG produced a mood-first plan
+("moody") and a playlist that was 4/5 hip-hop; see README → Sample interactions.
