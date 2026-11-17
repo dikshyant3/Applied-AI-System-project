@@ -1,0 +1,59 @@
+flowchart LR
+    subgraph UX["User experience"]
+        User["User"]
+        Request["Natural-language request<br/>preferences · activity · playlist requirements"]
+        Results["Validated playlist<br/>songs · scores · metadata-based explanations"]
+        Feedback["User feedback"]
+    end
+
+    subgraph Agent["Agentic recommendation workflow"]
+        Intake["Request intake"]
+        Planner["LLM planning agent<br/>interpret request and saved preferences"]
+        Plan["Structured recommendation plan"]
+        Orchestrator["Python workflow orchestrator"]
+        Recommender["Content-based recommender<br/>rank by genre, mood, energy, and supported features"]
+        Builder["Playlist builder<br/>artist diversity · duration · energy progression"]
+        Validator{"Constraint validator<br/>requirements satisfied?"}
+        Retry{"Retry limit<br/>remaining?"}
+        Revise["Return failed constraints<br/>for plan revision"]
+        Explain["Build explanations from<br/>actual scores and song metadata"]
+        Exhausted["Return unable-to-satisfy status<br/>with unmet constraints"]
+    end
+
+    subgraph Data["Data and personalization"]
+        Catalog[("Song catalog<br/>CSV")]
+        Preferences[("Saved user preferences")]
+    end
+
+    subgraph Quality["Observability and evaluation"]
+        Logs[("Workflow logs")]
+        Evaluation["Evaluation<br/>recommendation quality · constraint satisfaction · reliability"]
+    end
+
+    User --> Request --> Intake --> Planner
+    Preferences --> Planner
+    Planner --> Plan --> Orchestrator --> Recommender
+    Catalog --> Recommender
+    Recommender --> Builder --> Validator
+    Validator -- Yes --> Explain --> Results --> User
+    Validator -- No --> Retry
+    Retry -- Yes --> Revise --> Planner
+    Retry -- No --> Exhausted --> User
+    Results --> Feedback --> Preferences
+
+    Intake -. "request and plan events" .-> Logs
+    Recommender -. "ranked songs and scores" .-> Logs
+    Validator -. "validation outcome and retry count" .-> Logs
+    Results -. "playlist and feedback outcomes" .-> Logs
+    Logs --> Evaluation
+
+    classDef agent fill:#e8eaff,stroke:#5556a8,color:#1f2355
+    classDef process fill:#e8f5e9,stroke:#39834a,color:#183d20
+    classDef decision fill:#fff3cd,stroke:#a77b00,color:#4d3900
+    classDef storage fill:#f3e8ff,stroke:#7950a1,color:#352148
+    classDef user fill:#e1f4f7,stroke:#278093,color:#123d45
+    class Planner,Plan agent
+    class Intake,Orchestrator,Recommender,Builder,Revise,Explain,Exhausted,Evaluation process
+    class Validator,Retry decision
+    class Catalog,Preferences,Logs storage
+    class User,Request,Results,Feedback user

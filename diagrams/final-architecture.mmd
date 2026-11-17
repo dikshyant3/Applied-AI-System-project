@@ -1,0 +1,100 @@
+%% TuneWise final architecture.
+%% Colors: purple = LLM, green = Python processing, yellow = decisions,
+%% lilac = stored data, blue = user, ORANGE (dashed) = added after the initial design,
+%% red = checks by tests or humans.
+flowchart LR
+    subgraph Build["Catalog build — offline, once (added)"]
+        Deezer[("Deezer public API<br/>playlists · tracks · covers · previews")]
+        Collect["Seed searches → labelled tracks<br/>playlist titles become tags"]
+        Measure["Download each 30 s preview once<br/>librosa measures tempo + energy"]
+        Deezer --> Collect --> Measure
+    end
+
+    subgraph Data["Data and personalization"]
+        RealCatalog[("Real catalog<br/>data/real_songs.csv · 1,190 songs")]
+        DemoCatalog[("Synthetic demo catalog<br/>data/songs.csv · 250 songs")]
+        Profile[("Saved profile JSON<br/>preferences + like / dislike history")]
+        Index[("Embedding index<br/>all-MiniLM-L6-v2, local")]
+    end
+    Measure --> RealCatalog --> Index
+
+    subgraph UX["User experience — Streamlit web page + CLI"]
+        User["User"]
+        Request["Natural-language request"]
+        Cards["Song cards<br/>cover · ▶ 30 s preview · 👍 / 👎"]
+        ForYou["For You page<br/>no prompt needed"]
+        Liked["Liked songs list"]
+    end
+
+    subgraph Agent["Agentic recommendation workflow (Plan → Act → Observe → Revise)"]
+        Retrieve["RAG step 1: retrieve closest songs<br/>→ catalog_matches hints"]
+        Planner["LLM planning agent (Groq)<br/>structured JSON plan only"]
+        Plan["Validated plan<br/>evidence-checked, schema-checked"]
+        Filter["Hard-constraint filter"]
+        Narrow["RAG step 2: keep top-k eligible<br/>songs most similar to request"]
+        Recommender["VibeMatch recommender<br/>original scoring, unchanged"]
+        Builder["Playlist builder<br/>size · artists · duration · energy order"]
+        Validator{"Deterministic validator<br/>all checks pass?"}
+        Retry{"Retryable and<br/>attempts left?"}
+        Revise["Structured failure observation<br/>→ planner revises soft fields"]
+        Stop["Explicit failure status<br/>unsupported · impossible · budget used"]
+    end
+
+    subgraph Personal["Prompt-free personalization (added)"]
+        Taste["Taste centroid<br/>near liked, away from disliked"]
+        Rank2["VibeMatch ranks with saved preferences<br/>'Because you liked …'"]
+    end
+
+    subgraph Quality["Testing, evaluation and human checks"]
+        Logs[("JSON workflow events<br/>no request text or song titles")]
+        Pytest["pytest: 385 automated tests"]
+        MockEval["Mock evaluation: 14 scripted scenarios<br/>pass / fail + metrics"]
+        RagEval["RAG evaluation: 15 descriptive queries<br/>precision@10 vs lexical vs random"]
+        Human["Human review (blinded ratings)<br/>+ user 👍 / 👎 feedback"]
+    end
+
+    User --> Request --> Retrieve
+    Index --> Retrieve
+    Retrieve --> Planner
+    Request --> Planner
+    Profile --> Planner
+    Planner --> Plan --> Filter
+    RealCatalog --> Filter
+    DemoCatalog --> Filter
+    Filter --> Narrow --> Recommender
+    Index --> Narrow
+    Recommender --> Builder --> Validator
+    Validator -- yes --> Cards
+    Validator -- no --> Retry
+    Retry -- yes --> Revise --> Planner
+    Retry -- no --> Stop --> User
+    Deezer -. "fresh preview URL on click" .-> Cards
+    Cards --> User
+    Cards -- "👍 / 👎" --> Profile
+    Cards -- "👍" --> Liked
+    Profile --> Taste
+    Index --> Taste
+    Taste --> Rank2 --> ForYou --> Cards
+
+    Planner -. "plan / retry events" .-> Logs
+    Validator -. "validation outcome" .-> Logs
+    Logs --> MockEval
+    Pytest -. "checks every component" .-> Agent
+    RagEval -. "measures" .-> Retrieve
+    Human -. "judges relevance" .-> Cards
+
+    classDef agent fill:#e8eaff,stroke:#5556a8,color:#1f2355
+    classDef process fill:#e8f5e9,stroke:#39834a,color:#183d20
+    classDef decision fill:#fff3cd,stroke:#a77b00,color:#4d3900
+    classDef storage fill:#f3e8ff,stroke:#7950a1,color:#352148
+    classDef user fill:#e1f4f7,stroke:#278093,color:#123d45
+    classDef added fill:#ffe8d6,stroke:#c2410c,color:#5a1e02,stroke-dasharray:5 3
+    classDef check fill:#fde2e2,stroke:#b42318,color:#55160c
+
+    class Planner,Plan agent
+    class Filter,Recommender,Builder,Revise,Stop process
+    class Validator,Retry decision
+    class DemoCatalog,Profile,Logs storage
+    class User,Request user
+    class Deezer,Collect,Measure,RealCatalog,Index,Retrieve,Narrow,Cards,ForYou,Liked,Taste,Rank2,RagEval added
+    class Pytest,MockEval,Human check
