@@ -1,0 +1,269 @@
+{
+  "evaluation_mode": "live_llm",
+  "measured_at_utc": "2026-11-17T06:04:42.372348+00:00",
+  "metrics": {
+    "constraint_satisfaction_rate": 0.7143,
+    "error_handling_accuracy": null,
+    "mean_artist_diversity": 0.9286,
+    "mean_execution_latency_ms": 17400.068247141982,
+    "plan_validity_rate": 0.9286,
+    "retry_success_rate": 0.0
+  },
+  "scenario_count": 14,
+  "scenario_file": "/Users/dikshyant/codepath-ai110/Labs/Applied-AI-System-project/evaluation/scenarios.json",
+  "scenarios": [
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.390374990180135,
+        "selected_count": 5
+      },
+      "category": "normal",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "normal-lofi-study",
+      "latency_ms": 12424.061500001699,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.285417002392933,
+        "selected_count": 5
+      },
+      "category": "conflicting_preferences",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "explicit-overrides-saved-preference",
+      "latency_ms": 13665.263333998155,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "unsupported_metadata",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "category": "unsupported_category",
+      "constraints_satisfied": false,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "unsupported-language-metadata",
+      "latency_ms": 13727.071333996719,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.314292018534616,
+        "selected_count": 5
+      },
+      "category": "unique_artists",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "unique-artists",
+      "latency_ms": 12848.16175000742,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": false,
+        "latency_ms": 4.279916000086814,
+        "selected_count": 5
+      },
+      "category": "energy_progression",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "ascending-energy",
+      "latency_ms": 12545.675333007239,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "category": "impossible_constraints",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "impossible-small-catalog-subset",
+      "latency_ms": 13648.195082991151,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "category": "invalid_llm_response",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "invalid-llm-output",
+      "latency_ms": 12820.84354199469,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "retry_budget_exhausted",
+      "artist_diversity": 1.0,
+      "attempts": 2,
+      "category": "retry_exhaustion",
+      "constraints_satisfied": false,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "retry-budget-exhaustion",
+      "latency_ms": 27127.6907499996,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "retry_budget_exhausted",
+      "artist_diversity": 1.0,
+      "attempts": 3,
+      "category": "retry_success",
+      "constraints_satisfied": false,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "successful-plan-revision",
+      "latency_ms": 41994.17583300965,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "category": "api_failure",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "llm-api-rate-limit",
+      "latency_ms": 12720.601417007856,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "api_failure",
+      "artist_diversity": 0.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 12.719916005153209,
+        "selected_count": 5
+      },
+      "category": "exclude_artist",
+      "constraints_satisfied": false,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "rock-workout-exclude-artist",
+      "latency_ms": 30239.732708985684,
+      "plan_valid": false,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.23445799970068,
+        "selected_count": 5
+      },
+      "category": "multi_genre_constraint",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "sad-blues-or-folk",
+      "latency_ms": 13382.257499994012,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.228957986924797,
+        "selected_count": 5
+      },
+      "category": "energy_progression",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "ambient-wind-down",
+      "latency_ms": 13508.638958010124,
+      "plan_valid": true,
+      "retry_success": false
+    },
+    {
+      "actual_status": "succeeded",
+      "artist_diversity": 1.0,
+      "attempts": 1,
+      "baseline": {
+        "artist_diversity": 1.0,
+        "constraint_satisfaction": true,
+        "latency_ms": 4.264334012987092,
+        "selected_count": 5
+      },
+      "category": "unique_artists",
+      "constraints_satisfied": true,
+      "expected_status": null,
+      "expected_status_matched": null,
+      "id": "happy-pop-unique-artists",
+      "latency_ms": 12948.586416983744,
+      "plan_valid": true,
+      "retry_success": false
+    }
+  ],
+  "vibematch_comparison": {
+    "comparable_scenarios": [
+      "normal-lofi-study",
+      "explicit-overrides-saved-preference",
+      "unique-artists",
+      "ascending-energy",
+      "rock-workout-exclude-artist",
+      "sad-blues-or-folk",
+      "ambient-wind-down",
+      "happy-pop-unique-artists"
+    ],
+    "scenario_count": 8,
+    "tunewise": {
+      "constraint_satisfaction_rate": 0.875,
+      "mean_artist_diversity": 0.875,
+      "mean_execution_latency_ms": 15195.2972
+    },
+    "vibematch": {
+      "constraint_satisfaction_rate": 0.875,
+      "mean_artist_diversity": 1.0,
+      "mean_execution_latency_ms": 5.3397
+    }
+  }
+}

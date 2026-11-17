@@ -15,6 +15,12 @@ and verifies every rule, so every song is real and every rule is checked.
 
 ---
 
+## Loom walkthrough
+
+**Loom link:** [Watch the walkthrough](https://www.loom.com/share/661a30793c304e748f7c6819a5ecb0ec)
+
+---
+
 ## 1. The original project: VibeMatch (Modules 1–3)
 
 TuneWise is built on my earlier project, **VibeMatch**. VibeMatch was a
@@ -197,6 +203,18 @@ python -m evaluation.evaluate --mode mock   # 14 scenarios, pass/fail + metrics
 python -m evaluation.rag_eval               # retrieval quality on real songs
 python -m evaluation.rag_eval --live        # full workflow with vs without RAG (uses Groq)
 ```
+
+To run the predefined scenarios with the live LLM against the real catalog:
+
+```bash
+python -m evaluation.evaluate --mode live \
+  --catalog data/real_songs.csv \
+  --output evaluation/live-report.json
+```
+
+This requires `GROQ_API_KEY` in `.env`, makes real provider calls, and may incur
+usage costs. Live results are nondeterministic; expected-status pass/fail
+matching applies to mock mode only.
 
 ---
 
@@ -417,5 +435,5 @@ tests/                       385 automated tests
 ```
 
 More documentation: [Model card](./model_card.md) ·
-[AI interactions, traces and privacy](./ai_interactions.md) ·
-[Code walkthrough](./PROJECT_WALKTHROUGH.md)
+[AI interactions, traces and privacy](./ai_interactions.md)
+
