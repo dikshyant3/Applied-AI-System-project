@@ -1,0 +1,86 @@
+Request: 5 songs that feel like driving through neon city lights at 2am
+Planner model: qwen/qwen3.8-27b
+Scoring mode: Genre-First (genre weight 2.0, mood weight 1.0)
+Candidates: 1190 of 1190 catalog songs satisfy the hard constraints
+
+Plan (non-default fields):
+  favorite_genre             synthwave                [inferred] The request describes a 'neon city lights' night drive, which strongly aligns with the synthwave genre found in catalog matches.
+  favorite_mood              nostalgic                [inferred] The '2am' and 'neon city lights' context implies a nostalgic or moody atmosphere, with 'nostalgic' being the primary mood in the top catalog matches.
+  target_energy              0.5                      [inferred] level 'medium' mapped to 0.5 by the documented TuneWise scale; A night drive is typically a steady, cruising experience rather than high-energy or very low-energy.
+  preferred_detailed_mood    nocturnal                [inferred] The specific imagery of 'driving through neon city lights at 2am' maps directly to the 'nocturnal' detailed mood present in the catalog matches.
+  playlist_size              5                        [explicit] '5 songs'
+
+Agent loop: SUCCEEDED after 1 of 3 attempt(s) - playlist passed validation on attempt 1
+  attempt 1 (initial): passed
+
+Playlist validation: PASSED (5 of 5 songs)
+  [passed     ] song_metadata: all songs have valid metadata
+  [passed     ] catalog_membership: all songs are unmodified catalog records
+  [passed     ] no_duplicate_songs: no song appears twice
+  [passed     ] playlist_size: playlist has the requested 5 songs
+
+Playlist (songs ranked by the original VibeMatch recommender; Pos = playlist order):
+
++-----+------+-----+-----------+-----------+--------+------------+-------------+
+| Pos | Rank | ID  | Genre     | Mood      | Energy | Base Score | Final Score |
++-----+------+-----+-----------+-----------+--------+------------+-------------+
+| 1   | 1    | 903 | synthwave | nostalgic | 0.50   | 5.32       | 5.32        |
+| 2   | 2    | 894 | synthwave | nostalgic | 0.52   | 5.28       | 4.53        |
+| 3   | 3    | 878 | synthwave | nostalgic | 0.45   | 5.27       | 4.52        |
+| 4   | 4    | 880 | synthwave | nostalgic | 0.44   | 5.24       | 4.49        |
+| 5   | 5    | 887 | synthwave | nostalgic | 0.43   | 5.21       | 4.46        |
++-----+------+-----+-----------+-----------+--------+------------+-------------+
++------+-------------------+-------------+-------------+-------------------------------------------------------+
+| Rank | Song Title        | Artist      | Final Score | Recommendation Reasons                                |
++------+-------------------+-------------+-------------+-------------------------------------------------------+
+| 1    | See You Next Year | Arimasen    | 5.32        | genre match (+2.0)                                    |
+|      |                   |             |             | mood match (+1.0)                                     |
+|      |                   |             |             | energy similarity (+1.0)                              |
+|      |                   |             |             | popularity similarity (+0.3)                          |
+|      |                   |             |             | release decade not specified (+0.0)                   |
+|      |                   |             |             | detailed mood match (+0.6)                            |
+|      |                   |             |             | instrumentalness similarity (+0.3)                    |
+|      |                   |             |             | speechiness similarity (+0.2)                         |
+|      |                   |             |             | diversity penalty (+0.00: no artist or genre repeats) |
+|      |                   |             |             | semantic match to request 0.48 (retrieval rank 49)    |
+| 2    | REI               | KoruSe      | 4.53        | genre match (+2.0)                                    |
+|      |                   |             |             | mood match (+1.0)                                     |
+|      |                   |             |             | energy similarity (+1.0)                              |
+|      |                   |             |             | popularity similarity (+0.2)                          |
+|      |                   |             |             | release decade not specified (+0.0)                   |
+|      |                   |             |             | detailed mood match (+0.6)                            |
+|      |                   |             |             | instrumentalness similarity (+0.3)                    |
+|      |                   |             |             | speechiness similarity (+0.2)                         |
+|      |                   |             |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+|      |                   |             |             | semantic match to request 0.50 (retrieval rank 28)    |
+| 3    | Shadows           | Hotel Pools | 4.52        | genre match (+2.0)                                    |
+|      |                   |             |             | mood match (+1.0)                                     |
+|      |                   |             |             | energy similarity (+0.9)                              |
+|      |                   |             |             | popularity similarity (+0.3)                          |
+|      |                   |             |             | release decade not specified (+0.0)                   |
+|      |                   |             |             | detailed mood match (+0.6)                            |
+|      |                   |             |             | instrumentalness similarity (+0.3)                    |
+|      |                   |             |             | speechiness similarity (+0.2)                         |
+|      |                   |             |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+|      |                   |             |             | semantic match to request 0.52 (retrieval rank 14)    |
+| 4    | Divinity          | Stellar     | 4.49        | genre match (+2.0)                                    |
+|      |                   |             |             | mood match (+1.0)                                     |
+|      |                   |             |             | energy similarity (+0.9)                              |
+|      |                   |             |             | popularity similarity (+0.2)                          |
+|      |                   |             |             | release decade not specified (+0.0)                   |
+|      |                   |             |             | detailed mood match (+0.6)                            |
+|      |                   |             |             | instrumentalness similarity (+0.3)                    |
+|      |                   |             |             | speechiness similarity (+0.2)                         |
+|      |                   |             |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+|      |                   |             |             | semantic match to request 0.50 (retrieval rank 26)    |
+| 5    | Indigo            | Foudroie    | 4.46        | genre match (+2.0)                                    |
+|      |                   |             |             | mood match (+1.0)                                     |
+|      |                   |             |             | energy similarity (+0.9)                              |
+|      |                   |             |             | popularity similarity (+0.2)                          |
+|      |                   |             |             | release decade not specified (+0.0)                   |
+|      |                   |             |             | detailed mood match (+0.6)                            |
+|      |                   |             |             | instrumentalness similarity (+0.3)                    |
+|      |                   |             |             | speechiness similarity (+0.2)                         |
+|      |                   |             |             | diversity penalty (-0.75: artist -0.00, genre -0.75)  |
+|      |                   |             |             | semantic match to request 0.49 (retrieval rank 38)    |
++------+-------------------+-------------+-------------+-------------------------------------------------------+
